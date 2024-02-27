@@ -1,38 +1,30 @@
-# Блок 1: Таймер / Обратный отсчёт
+# React + TypeScript + Vite
 
-### В этом разделе вы познакомитесь с библиотекой React
-[Документация на русском](https://ru.reactjs.org/docs/getting-started.html)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Подготовка окружения
-1. Установка [node.js](https://nodejs.org/en) и [npm](https://www.npmjs.com/)
-    1. Переходим на [node.js](https://nodejs.org/en)
-    2. Устанавливаем "Recommended For Most Users" версию
-    3. Откроем консоль и выполним команды:
-    ```
-        node -v
-    ```
-    ```
-        npm -v
-    ```
-   Если команды отработали правильно, то вы увидите версии node.js и npm соответственно
+Currently, two official plugins are available:
 
-## Создание и настройка react приложения
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-1. Чтобы создать react приложение будем пользоваться [Create React App](https://create-react-app.dev/) но с использованием кастомного темплейта [cra-template-typescript-styled](https://www.npmjs.com/package/cra-template-typescript-styled)
-    1. Для этого установим темплейт
-   ```
-   npm i cra-template-typescript-styled
-   ```
-    2. И используем его
-   ```
-   npx create-react-app ./ --template typescript-styled
-   ```
-2. Темплейт содержит зависимости на [Styled Components](https://styled-components.com/) и [Prettier](https://prettier.io/). Не забудьте поставить дополнительные плагины в вашей среде разработки, чтобы комфортно с ними работать.
-3. Добавьте зависимости на [MUI](https://mui.com/material-ui/getting-started/installation/) самостоятельно (должны быть сохранены в `package.json`. Используйте `--save` при установке через `npm`)
+## Expanding the ESLint configuration
 
-## Требования
-- Старт с create-react-app, styled-components, prettier, MUI
-- Делаем 2 команды `npm run lint` и `npm run lint:fix`, которые запускают линтер (без автофиксов и с ними), у итогового решения не должно быть ошибок линтера (в дальнейших заданиях по-умолчанию).
-- Все props компонентов описаны через [PropTypes](https://ru.reactjs.org/docs/typechecking-with-proptypes.html)
-- Все зависимости подключаем через npm
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
