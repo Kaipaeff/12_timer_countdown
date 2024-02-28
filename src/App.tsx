@@ -1,8 +1,14 @@
+
+
+import SwitchMode from "./conponents/SwitchMode/SwitchMode";
+import Timer from "./conponents/Timer/Timer";
+
 function App() {
   return (
-    <>
-      <h1 className="container">Hello, React!</h1>
-    </>
+    <div className="container">
+      <SwitchMode/>
+      <Timer/>
+    </div>
   ) 
 }
 

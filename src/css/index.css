@@ -34,17 +34,25 @@ body {
   display: flex;
 	flex-direction: column;
   align-items: center;
-	min-height: 100vh;
   width: 100%;
+  padding-top: 80px;
   font-family: "TTLakes", "Nunito", "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
-  color: aliceblue;
-  background-color: #000;
+  color: rgb(123, 148, 169);
+  background-color: #fff;
 }
 
 .container {
-	width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	width: 570px;
+  height: 700px;
+  padding: 24px;
+  border-radius: 49px;
+  background-color: #000;
+  box-shadow: 0px 16px 24px 6px rgba(2, 9, 51, 0.439);
 }
 
 .section {
