@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { ISwitchComponentProps } from "../../types/switchMode.interface";
 
 
-export const SwitchBlock = styled.section`
+export const SwitchBlockStyles = styled.section`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -17,19 +17,19 @@ export const SwitchBlock = styled.section`
   border-radius: 25px;
 `
 
-export const SwitchTimer = styled.span<ISwitchComponentProps>`
+export const SwitchTimerStyles = styled.span<ISwitchComponentProps>`
   color: ${props => props.mode === 'timer' ? '#fff' : '#737373'};
   cursor: pointer;
   z-index: 3;
 `
 
-export const SwitchCountdown = styled.span<ISwitchComponentProps>`
+export const SwitchCountdownStyles = styled.span<ISwitchComponentProps>`
 color: ${props => props.mode === 'countdown' ? '#fff' : '#737373'};
 cursor: pointer;
   z-index: 3;
 `
 
-export const SwitchedMode = styled.div<ISwitchComponentProps>`
+export const SwitchedModeStyles = styled.div<ISwitchComponentProps>`
   position: absolute;
   top: 0;
   left: ${props => props.mode === 'timer' ? '0' : '50%'};
