@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
 @font-face {
   font-family: "TTLakes";
-  src: local("TTLakes-Light"), url("../assets/fonts/TTLakes-Light.woff2") format("woff2"), url("../assets/fonts/TTLakes-Light.woff") format("woff");
+  src: local("TTLakes-Light"), url("../assets/fonts/TTLakes-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
 
 @font-face {
   font-family: "TTLakes";
-  src: local("TTLakes-Regular"), url("../assets/fonts/TTLakes-Regular.woff2") format("woff2"), url("../assets/fonts/TTLakes-Regular.woff") format("woff");
+  src: local("TTLakes-Regular"), url("../assets/fonts/TTLakes-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
 
 @font-face {
   font-family: "TTLakes";
-  src: local("TTLakes-Medium"), url("../assets/fonts/TTLakes-Medium.woff2") format("woff2"), url("../assets/fonts/TTLakes-Medium.woff") format("woff");
+  src: local("TTLakes-Medium"), url("../assets/fonts/TTLakes-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -27,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
 @font-face {
   font-family: "TTLakes";
-  src: local("TTLakes-Bold"), url("../assets/fonts/TTLakes-Bold.woff2") format("woff2"), url("../assets/fonts/TTLakes-Bold.woff") format("woff");
+  src: local("TTLakes-Bold"), url("../assets/fonts/TTLakes-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

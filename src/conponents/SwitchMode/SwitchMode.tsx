@@ -1,4 +1,4 @@
-import { ISwitchComponentProps } from "../../types/switchMode.interface";
+import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
 

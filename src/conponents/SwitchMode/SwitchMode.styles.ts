@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { ISwitchComponentProps } from "../../types/switchMode.interface";
+import { ISwitchComponentProps } from "../../types/interfaces";
 
 
 export const SwitchBlockStyles = styled.section`

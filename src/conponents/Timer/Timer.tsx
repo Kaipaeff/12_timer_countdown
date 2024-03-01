@@ -1,7 +1,17 @@
+import { useState } from "react";
+import CircularProgress from "../CircularProgress/CircularProgress";
 
 
 export default function Timer() {
+  const [time, setTime] = useState(0); //86399
+
+
+
+
+
   return (
-    <h3>I'm the Timer component</h3>
+    <>
+      <CircularProgress time={time}/>
+    </>
   )
 }
