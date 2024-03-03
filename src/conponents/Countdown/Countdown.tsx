@@ -25,6 +25,8 @@ export default function Countdown() {
 
 
   const handleCancel = useCallback(() => {
+    console.log('click');
+    
     setSeconds(0);
     setIsStarted(false);
     clearInterval(intervalRef.current);
@@ -35,9 +37,12 @@ export default function Countdown() {
     <>
       <CircularProgress time={seconds} intervalRef={intervalRef}/>
       <ControlButtonsBlockStyles>
-        <CancelControlButtonStyles onClick={handleCancel} title={'Отмена'}/>
+        
+        <CancelControlButtonStyles onClick={handleCancel} title={'Сброс'} disabled={!seconds || isStarted}/>
+
         {!isStarted && <StartControlButtonStyles onClick={handleStart} title={'Старт'}/>}
         {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'}/>}
+
       </ControlButtonsBlockStyles>
     </>
   )
