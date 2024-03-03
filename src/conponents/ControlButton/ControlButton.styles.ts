@@ -63,6 +63,24 @@ export const StartControlButtonStyles = styled(ControlButton)<IButtonProps>`
     }
 `
 
+export const StopControlButtonStyles = styled(ControlButton)<IButtonProps>`
+  background-color: ${props => props.bcg || "#320E0B"};
+  color: ${props => props.color || "#FF453A"};
+
+
+  & div {
+    background-color: ${props => props.bcg || "#000000"};
+
+    & div {
+      background-color: ${props => props.bcg || "#320E0B"};
+
+      &:active {
+        background-color: #5B1812;
+        box-shadow: none;
+        }
+    }
+`
+
 export const CancelControlButtonStyles = styled(ControlButton)<IButtonProps>`
   color: ${props => props.color || "#fff"};
   background-color: ${props => props.bcg || "#1C1C1D"};

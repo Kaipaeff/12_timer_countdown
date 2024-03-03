@@ -6,6 +6,7 @@ export interface ISwitchComponentProps {
 export interface ITimerComponentProps {
   time: number;
   setTime?: (type: number) => void;
+  intervalRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
 }
 
 export interface IButtonProps {
@@ -13,4 +14,5 @@ export interface IButtonProps {
   color?: string;
   bcg?: string;
   className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
