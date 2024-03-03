@@ -15,4 +15,5 @@ export interface IButtonProps {
   bcg?: string;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
