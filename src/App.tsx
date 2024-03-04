@@ -9,15 +9,15 @@ import { ContainerStyles } from "./styles/ContainerStyles";
 
 
 function App() {
-  const [mode, setMode] = useState('timer');
+  const [mode, setMode] = useState('timer'); //!данный стэйт лучше вынести в контекст, или компонент SwitchMode
+  const [isStarted, setIsStarted] = useState(false); //!вынести стэйт в useContext
 
   return (
     <ContainerStyles>
       <GlobalStyles />
-
       <SwitchMode mode={mode} setMode={setMode}/>
-      {mode === 'timer' ? <Timer/> : <Countdown/>}
-
+      {mode === 'timer' && <Timer isStarted={isStarted} setIsStarted={setIsStarted}/>}
+      {mode === 'countdown' && <Countdown/>}
     </ContainerStyles>
   ) 
 }

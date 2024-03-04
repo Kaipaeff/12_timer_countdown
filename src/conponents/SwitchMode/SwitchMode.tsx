@@ -5,15 +5,13 @@ import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedMo
 export default function SwitchMode({mode, setMode}: ISwitchComponentProps) {
 
   const handleSwitchMode = (type: string): void => {
-    if(setMode) {
-      setMode(type);
-    }
+      setMode!(type);
   }
 
   return (
     <SwitchBlockStyles>
-      <SwitchTimerStyles mode={mode} onClick={() => handleSwitchMode('timer')}>Таймер</SwitchTimerStyles>
-      <SwitchCountdownStyles mode={mode} onClick={() => handleSwitchMode('countdown')}>Секундомер</SwitchCountdownStyles>
+      <SwitchTimerStyles mode={mode} onClick={() => handleSwitchMode('timer')}>Timer</SwitchTimerStyles>
+      <SwitchCountdownStyles mode={mode} onClick={() => handleSwitchMode('countdown')}>Countdown</SwitchCountdownStyles>
       <SwitchedModeStyles mode={mode}/>
     </SwitchBlockStyles>
   )

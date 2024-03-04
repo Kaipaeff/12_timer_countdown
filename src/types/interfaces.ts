@@ -4,10 +4,19 @@ export interface ISwitchComponentProps {
 }
 
 export interface ITimerComponentProps {
-  time: number;
-  setTime?: (type: number) => void;
-  intervalRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+  time?: number;
+  intervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+  isStarted: boolean;
+  setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface ICountdownComponentProps {
+  time: number;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
+  // intervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+}
+
+export interface ICircularProgressProps extends Partial<ITimerComponentProps>, Partial<ICountdownComponentProps> {}
 
 export interface IButtonProps {
   title?: string;
