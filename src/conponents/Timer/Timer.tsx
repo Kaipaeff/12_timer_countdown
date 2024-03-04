@@ -8,7 +8,7 @@ import { ITimerComponentProps } from "../../types/interfaces";
 
 
 function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState<number>(0);
   // const [isStarted, setIsStarted] = useState(false); //вынес в App, позже уберу в useContext
   const intervalIdRef = useRef<NodeJS.Timeout>();
 
@@ -16,12 +16,12 @@ function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
   const handleStart = useCallback(() => {
     if(!isStarted) {
       intervalIdRef.current = setInterval(() => {  
-        setSeconds((prev) => prev + 100);
+        setSeconds((prev: number) => prev + 100);
       }, 100);
     } else {
       clearInterval(intervalIdRef.current);
     }
-    setIsStarted((prev) => !prev);
+    setIsStarted((prev: boolean) => !prev);
   }, [isStarted]);
 
 
