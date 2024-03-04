@@ -9,7 +9,7 @@ import { ContainerStyles } from "./styles/ContainerStyles";
 
 
 function App() {
-  const [mode, setMode] = useState('timer'); //!данный стэйт лучше вынести в контекст, или компонент SwitchMode
+  const [mode, setMode] = useState('countdown'); //!данный стэйт лучше вынести в контекст, или компонент SwitchMode
   const [isStarted, setIsStarted] = useState(false); //!вынести стэйт в useContext
 
   return (

@@ -26,8 +26,8 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
           stroke: '#FE9F06',
         },
         text: {
-          fill: '#fff',
-          fontSize: '18px',
+          fill: '#737373',
+          fontSize: '20px',
           fontWeight: '100',
         },
       }}
