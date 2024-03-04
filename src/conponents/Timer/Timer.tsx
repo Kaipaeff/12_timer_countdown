@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, memo } from "react";
+import { useRef, useCallback, memo } from "react";
 
 import CircularProgress from "../CircularProgress/CircularProgress";
 
@@ -7,8 +7,8 @@ import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonS
 import { ITimerComponentProps } from "../../types/interfaces";
 
 
-function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
-  const [seconds, setSeconds] = useState<number>(0);
+function Timer({isStarted, setIsStarted, timerSeconds, setTimerSeconds}: ITimerComponentProps) {
+  // const [seconds, setSeconds] = useState<number>(0);
   // const [isStarted, setIsStarted] = useState(false); //вынес в App, позже уберу в useContext
   const intervalIdRef = useRef<NodeJS.Timeout>();
 
@@ -16,7 +16,7 @@ function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
   const handleStart = useCallback(() => {
     if(!isStarted) {
       intervalIdRef.current = setInterval(() => {  
-        setSeconds((prev: number) => prev + 100);
+        setTimerSeconds((prev: number) => prev + 100);
       }, 100);
     } else {
       clearInterval(intervalIdRef.current);
@@ -26,7 +26,7 @@ function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
 
 
   const handleReset = useCallback(() => {
-    setSeconds(0);
+    setTimerSeconds(0);
     setIsStarted(false);
     clearInterval(intervalIdRef.current);
   }, [])
@@ -34,9 +34,9 @@ function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
 
   return (
     <>
-      <CircularProgress time={seconds} intervalIdRef={intervalIdRef}/>
+      <CircularProgress timerSeconds={timerSeconds} intervalIdRef={intervalIdRef}/>
       <InnerWrapperBlockStyles>
-        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!seconds || isStarted} bcg1="white"/>
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!timerSeconds || isStarted} bcg1="white"/>
         {!isStarted && <StartControlButtonStyles onClick={handleStart} title={'Старт'} bcg1="white"/>}
         {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'} bcg1="white"/>}
       </InnerWrapperBlockStyles>
