@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useState, useRef, useCallback, memo } from "react";
+
 import CircularProgress from "../CircularProgress/CircularProgress";
+
 import { ControlButtonsBlockStyles } from "../../styles/ControlButtonsBlockStyles";
-import { CancelControlButtonStyles, StartControlButtonStyles } from "../ControlButton/ControlButton.styles";
+import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
+import { ITimerComponentProps } from "../../types/interfaces";
 
 
-export default function Timer() {
-  const [time, setTime] = useState(99); //86399
+function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
+  const [seconds, setSeconds] = useState(0);
+  // const [isStarted, setIsStarted] = useState(false); //вынес в App, позже уберу в useContext
+  const intervalIdRef = useRef<NodeJS.Timeout>();
+
+
+  const handleStart = useCallback(() => {
+    if(!isStarted) {
+      intervalIdRef.current = setInterval(() => {  
+        setSeconds((prev) => prev + 100);
+      }, 100);
+    } else {
+      clearInterval(intervalIdRef.current);
+    }
+    setIsStarted((prev) => !prev);
+  }, [isStarted]);
+
+
+  const handleReset = useCallback(() => {
+    setSeconds(0);
+    setIsStarted(false);
+    clearInterval(intervalIdRef.current);
+  }, [])
+
 
   return (
     <>
-      <CircularProgress time={time}/>
-    
+      <CircularProgress time={seconds} intervalIdRef={intervalIdRef}/>
       <ControlButtonsBlockStyles>
-        <CancelControlButtonStyles title={'Отмена'}/>
-        <StartControlButtonStyles title={'Старт'}/>
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!seconds || isStarted}/>
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={'Старт'}/>}
+        {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'}/>}
       </ControlButtonsBlockStyles>
     </>
   )
 }
+
+export default memo(Timer);
