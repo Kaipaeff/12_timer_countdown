@@ -1,5 +1,5 @@
 import { Slider, TextField } from "@mui/material";
-import { InnerWrapperBlockStyles, SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
+import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 
 
 export default function SetTime() {
@@ -25,7 +25,6 @@ export default function SetTime() {
           color="warning"
           sx={{
             width: 120,
-            
           }}
           size="small"
           inputProps={{ min: 0, max: 59 }}

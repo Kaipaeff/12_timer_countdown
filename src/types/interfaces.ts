@@ -4,16 +4,18 @@ export interface ISwitchComponentProps {
 }
 
 export interface ITimerComponentProps {
-  time?: number;
   intervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
   isStarted: boolean;
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  timerSeconds: number;
+  setTimerSeconds: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface ICountdownComponentProps {
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
-  // intervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'isStarted' | 'setIsStarted'> {
+  // setTime: React.Dispatch<React.SetStateAction<number>>;
+  countSeconds: number;
+  setCountSeconds: React.Dispatch<React.SetStateAction<number>>;
+  countIntervalRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
 }
 
 export interface ICircularProgressProps extends Partial<ITimerComponentProps>, Partial<ICountdownComponentProps> {}
