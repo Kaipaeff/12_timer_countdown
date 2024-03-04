@@ -8,13 +8,14 @@ export const SwitchBlockStyles = styled.section`
   justify-content: space-between;
   width: 530px;
   height: 50px;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   padding: 5px 34px 6px 73px;
   font-weight: 500;
   font-size: 32px;
   line-height: 39px;  
   background-color: #fff;
   border-radius: 25px;
+  outline: 1px solid rgba(0, 0, 0, 0.14);
 `
 
 export const SwitchTimerStyles = styled.span<ISwitchComponentProps>`

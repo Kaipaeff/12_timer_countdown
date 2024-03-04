@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, memo } from "react";
 
 import CircularProgress from "../CircularProgress/CircularProgress";
 
-import { ControlButtonsBlockStyles } from "../../styles/ControlButtonsBlockStyles";
+import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import { ITimerComponentProps } from "../../types/interfaces";
 
@@ -35,11 +35,11 @@ function Timer({isStarted, setIsStarted}: ITimerComponentProps) {
   return (
     <>
       <CircularProgress time={seconds} intervalIdRef={intervalIdRef}/>
-      <ControlButtonsBlockStyles>
-        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!seconds || isStarted}/>
-        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={'Старт'}/>}
-        {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'}/>}
-      </ControlButtonsBlockStyles>
+      <InnerWrapperBlockStyles>
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!seconds || isStarted} bcg1="white"/>
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={'Старт'} bcg1="white"/>}
+        {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'} bcg1="white"/>}
+      </InnerWrapperBlockStyles>
     </>
   )
 }
