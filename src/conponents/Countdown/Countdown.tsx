@@ -29,7 +29,7 @@ export default function Countdown({isStarted, setIsStarted, countSeconds, setCou
       clearInterval(countIntervalRef.current);
     }
     setIsStarted((prev: boolean) => !prev);
-  }, [isStarted]);
+  }, [isStarted, countSeconds]);
 
 
   const handleReset = useCallback(() => {
@@ -41,7 +41,7 @@ export default function Countdown({isStarted, setIsStarted, countSeconds, setCou
 
   return (
     <>
-      <SetTime />
+      <SetTime isStarted={isStarted} countSeconds={countSeconds} setCountSeconds={setCountSeconds}/>
 
       <CircularProgress countSeconds={countSeconds} countIntervalRef={countIntervalRef}/>
     

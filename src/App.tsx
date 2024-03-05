@@ -12,7 +12,7 @@ function App() {
   const [mode, setMode] = useState('countdown'); //!данный стэйт лучше вынести в контекст, или компонент SwitchMode
   const [isStarted, setIsStarted] = useState(false); //!вынести стэйт в useContext
   const [timerSeconds, setTimerSeconds] = useState<number>(0); //!вынести стэйт в useContext
-  const [countSeconds, setCountSeconds] = useState<number>(5000); //!вынести стэйт в useContext
+  const [countSeconds, setCountSeconds] = useState<number>(0); //!вынести стэйт в useContext
 
   
   return (
