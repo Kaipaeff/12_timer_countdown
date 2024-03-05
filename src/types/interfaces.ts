@@ -16,7 +16,6 @@ export interface ITimerComponentProps {
 }
 
 export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'isStarted' | 'setIsStarted'> {
-  // setTime: React.Dispatch<React.SetStateAction<number>>;
   countSeconds: number;
   setCountSeconds: React.Dispatch<React.SetStateAction<number>>;
   countIntervalRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
@@ -33,8 +32,4 @@ export interface IButtonProps {
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
-}
-
-export interface IInnerWrapperBlockStylesProps {
-
 }

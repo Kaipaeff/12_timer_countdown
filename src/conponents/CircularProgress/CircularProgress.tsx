@@ -17,7 +17,7 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
-      value={props.countSeconds! - 1000} 
+      value={props.countSeconds!} 
       maxValue={36000}
       counterClockwise={true}
       text={formattedTime}

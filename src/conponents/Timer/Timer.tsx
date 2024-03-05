@@ -16,8 +16,8 @@ function Timer({isStarted, setIsStarted, timerSeconds, setTimerSeconds}: ITimerC
   const handleStart = useCallback(() => {
     if(!isStarted) {
       intervalIdRef.current = setInterval(() => {  
-        setTimerSeconds((prev: number) => prev + 100);
-      }, 100);
+        setTimerSeconds((prev: number) => prev + 10);
+      }, 10);
     } else {
       clearInterval(intervalIdRef.current);
     }
