@@ -22,9 +22,9 @@ export default function Countdown({isStarted, setIsStarted, countSeconds, setCou
   const handleStart = useCallback(() => {
     if(!isStarted && countSeconds >= 1000) {
       countIntervalRef.current = setInterval(() => {  
-        setCountSeconds((prev: number) => prev > 0 ? prev - 100 : 0);
+        setCountSeconds((prev: number) => prev > 0 ? prev - 1000 : 0);
         console.log('HAVEorNOT?!');
-      }, 100);
+      }, 1000);
     } else {
       clearInterval(countIntervalRef.current);
     }
