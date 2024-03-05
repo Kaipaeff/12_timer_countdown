@@ -9,8 +9,6 @@ import { formatTimerTime, formatCountDownTime } from '../../services/formatTime'
 
 export default function CircularProgress({...props}: ICircularProgressProps) {
   
-  const seconds = props.timerSeconds || props.countSeconds //! Остановился тут. Задача - сбрасывать кнопки по завершении таймера \ пофиксить ползунок таймера
-
   const formattedTime = useMemo(() => {
     return props.intervalIdRef ? formatTimerTime(props.timerSeconds!) : formatCountDownTime(props.countSeconds!)
   }, [props.intervalIdRef, props.timerSeconds, props.countSeconds])
@@ -19,9 +17,9 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
-      value={seconds!} 
-      // maxValue={60000}
-      // counterClockwise={false}
+      value={props.countSeconds! - 1000} 
+      maxValue={36000}
+      counterClockwise={true}
       text={formattedTime}
       strokeWidth={props.intervalIdRef ? 0 : 3}
       styles={{

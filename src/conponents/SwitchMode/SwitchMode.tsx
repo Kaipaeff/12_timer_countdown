@@ -2,17 +2,20 @@ import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
 
-export default function SwitchMode({mode, setMode}: ISwitchComponentProps) {
+export default function SwitchMode({...props}: ISwitchComponentProps) {
 
   const handleSwitchMode = (type: string): void => {
-      setMode!(type);
+      props.setMode!(type);
+      props.setIsStarted!(false);
+      props.setTimerSeconds!(0);
+      props.setCountSeconds!(props.countSeconds!);
   }
 
   return (
     <SwitchBlockStyles>
-      <SwitchTimerStyles mode={mode} onClick={() => handleSwitchMode('timer')}>Timer</SwitchTimerStyles>
-      <SwitchCountdownStyles mode={mode} onClick={() => handleSwitchMode('countdown')}>Countdown</SwitchCountdownStyles>
-      <SwitchedModeStyles mode={mode}/>
+      <SwitchTimerStyles mode={props.mode} onClick={() => handleSwitchMode('timer')}>Timer</SwitchTimerStyles>
+      <SwitchCountdownStyles mode={props.mode} onClick={() => handleSwitchMode('countdown')}>Countdown</SwitchCountdownStyles>
+      <SwitchedModeStyles mode={props.mode}/>
     </SwitchBlockStyles>
   )
 }

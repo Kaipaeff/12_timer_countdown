@@ -1,6 +1,10 @@
 export interface ISwitchComponentProps {
   mode: string;
   setMode?: (type: string) => void;
+  setIsStarted?: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimerSeconds?: React.Dispatch<React.SetStateAction<number>>;
+  setCountSeconds?: React.Dispatch<React.SetStateAction<number>>;
+  countSeconds?: number;
 }
 
 export interface ITimerComponentProps {
