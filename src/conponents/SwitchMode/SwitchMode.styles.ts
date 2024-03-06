@@ -8,7 +8,7 @@ export const SwitchBlockStyles = styled.section`
   justify-content: space-between;
   width: 530px;
   height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   padding: 5px 34px 6px 73px;
   font-weight: 500;
   font-size: 32px;
