@@ -20,13 +20,15 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
       } else if (event.target.id === "seconds") {
         seconds = Number(event.target.value) * 1000;
       }
-      setCountSeconds(seconds + minutes);
+      setCountSeconds((prev) => prev = seconds + minutes);
+      // console.log('countSeconds_INPUTS:', countSeconds);
     }
   }
   
   const handleSliderChange = (event: Event, value: number | number[]) => {
     if(!isStarted && typeof value === "number") {
-      setCountSeconds(value);
+      setCountSeconds((prev) => prev = value);
+      // console.log('countSeconds_SLIDER:', countSeconds);
     }
   }
   
