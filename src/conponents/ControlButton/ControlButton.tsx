@@ -3,11 +3,14 @@ import { ControlButtonStyles } from "./ControlButton.styles";
 
 
 export default function ControlButton({...props}: IButtonProps) {
+
+  const {className, onClick, disabled, title} = props;
+
   return (
-    <ControlButtonStyles className={props.className} onClick={props.onClick} disabled={props.disabled}>
+    <ControlButtonStyles className={className} onClick={onClick} disabled={disabled}>
       <div>
         <div>
-          {props.title}
+          {title}
         </div>
       </div>
     </ControlButtonStyles>

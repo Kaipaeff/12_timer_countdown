@@ -5,6 +5,7 @@ import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockSt
 
 import { ISetTimeComponentProps } from "../../types/interfaces";
 
+  //! Сейчас инпуты работают по принципу или-или: ввод в один инпут стирает данные во втором. Нужно фиксить.
 
 export default function SetTime({...props}: ISetTimeComponentProps) {
 
@@ -33,25 +34,23 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
     }
   }
 
-  //! Сейчас инпуты работают по принципу или-или: ввод в один инпут стирает данные во втором. Нужно фиксить.
-  
 
   return (
     <>
       <Slider
-              id="slider"
-              aria-label="Seconds"
-              valueLabelDisplay="auto"
-              valueLabelFormat={(value) => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`}
-              defaultValue={0}
-              step={15}
-              min={0}
-              max={3600}
-              value={countSeconds}
-              color={'warning'}
-              disabled={isStarted}
-              onChange={handleSliderChange}
-            />
+        id="slider"
+        aria-label="Seconds"
+        valueLabelDisplay="auto"
+        valueLabelFormat={(value) => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`}
+        defaultValue={0}
+        step={15}
+        min={0}
+        max={3600}
+        value={countSeconds}
+        color={'warning'}
+        disabled={isStarted}
+        onChange={handleSliderChange}
+      />
       <SetTimeInnerWrapperBlockStyles>
         <TextField
           id="minutes"
