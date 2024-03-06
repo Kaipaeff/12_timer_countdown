@@ -8,10 +8,12 @@ import { ICircularProgressProps } from '../../types/interfaces';
 import { formatTimerTime, formatCountDownTime } from '../../services/formatTime';
 
 export default function CircularProgress({...props}: ICircularProgressProps) {
+
+  const {intervalIdRef, timerSeconds, countSeconds} = props;
   
   const formattedTime = useMemo(() => {
-    return props.intervalIdRef ? formatTimerTime(props.timerSeconds!) : formatCountDownTime(props.countSeconds!)
-  }, [props.intervalIdRef, props.timerSeconds, props.countSeconds])
+    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
+  }, [intervalIdRef, timerSeconds, countSeconds])
   
 
   return (
