@@ -10,16 +10,26 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
 
   const {isStarted, countSeconds, setCountSeconds} = props;
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    let updatedSeconds = countSeconds;
-    if (id === "minutes") {
-      updatedSeconds = Number(value) * 60 * 1000;
-    } else if (id === "seconds") {
-      updatedSeconds = Number(value);
+  let minutes = 0;
+  let seconds = 0;
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {  
+    if(!isStarted) {
+      if (event.target.id === "minutes") {
+        minutes = Number(event.target.value) * 60 * 1000;
+      } else if (event.target.id === "seconds") {
+        seconds = Number(event.target.value) * 1000;
+      }
+      setCountSeconds(seconds + minutes);
     }
-    setCountSeconds(updatedSeconds);
   }
+  
+  const handleSliderChange = (event: Event, value: number | number[]) => {
+    if(!isStarted && typeof value === "number") {
+      setCountSeconds(value);
+    }
+  }
+  
   
 
   return (
@@ -36,7 +46,7 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
           size="small"
           disabled={isStarted}
           inputProps={{ min: 0, max: 720 }}
-          value={Math.floor(countSeconds / 1000 / 60)}
+          value={Math.floor(countSeconds / 60)}
           onChange={handleInputChange}
         />
 
@@ -51,12 +61,13 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
           size="small"
           disabled={isStarted}
           inputProps={{ min: 0, max: 59 }}
-          value={countSeconds % 60000}
+          value={countSeconds % 60}
           onChange={handleInputChange}
         />
       </SetTimeInnerWrapperBlockStyles>
 
       <Slider
+        id="slider"
         aria-label="Seconds"
         valueLabelDisplay="auto"
         valueLabelFormat={(value) => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`}
@@ -67,6 +78,7 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
         value={countSeconds}
         color={'warning'}
         disabled={isStarted}
+        onChange={handleSliderChange}
       />
     </>
   )
