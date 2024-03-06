@@ -12,15 +12,15 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
   const {intervalIdRef, timerSeconds, countSeconds} = props;
   
   const formattedTime = useMemo(() => {
-    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
+    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!) //! здесь было так: : formatCountDownTime(countSeconds! / 60). Изменил, тестирую.
   }, [intervalIdRef, timerSeconds, countSeconds])
   
 
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
-      value={props.countSeconds!} 
-      maxValue={3600}
+      value={countSeconds!} 
+      maxValue={countSeconds! > 3600 ? countSeconds! : 3600} //! Протестировать данное выражение. Не уверен в правильности.
       counterClockwise={true}
       text={formattedTime}
       strokeWidth={props.intervalIdRef ? 0 : 3}

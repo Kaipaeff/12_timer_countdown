@@ -14,11 +14,12 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
   let seconds = 0;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {  
+    const {id, value} = event.target;
     if(!isStarted) {
-      if (event.target.id === "minutes") {
-        minutes = Number(event.target.value) * 60 * 1000;
-      } else if (event.target.id === "seconds") {
-        seconds = Number(event.target.value) * 1000;
+      if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
+        minutes = Number(value) * 60;
+      } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
+        seconds = Number(value) % 1000;
       }
       setCountSeconds((prev) => prev = seconds + minutes);
       // console.log('countSeconds_INPUTS:', countSeconds);
@@ -31,7 +32,8 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
       // console.log('countSeconds_SLIDER:', countSeconds);
     }
   }
-  
+
+  //! Сейчас инпуты работают по принципу или-или: ввод в один инпут стирает данные во втором. Нужно фиксить.
   
 
   return (
