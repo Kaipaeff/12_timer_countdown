@@ -12,7 +12,7 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
   const {intervalIdRef, timerSeconds, countSeconds} = props;
   
   const formattedTime = useMemo(() => {
-    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!) //! здесь было так: : formatCountDownTime(countSeconds! / 60). Изменил, тестирую.
+    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [intervalIdRef, timerSeconds, countSeconds])
   
 
@@ -20,10 +20,10 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
   <CircularProgressbarStyles>
     <CircularProgressbar 
       value={countSeconds!} 
-      maxValue={countSeconds! > 3600 ? countSeconds! : 3600} //! Протестировать данное выражение. Не уверен в правильности.
+      maxValue={countSeconds! > 3600 ? countSeconds! : 3600} //! Это выражение не работает! Нужно значение инпута помещать в стейт, класть в контекст и доставать тут для использования.
       counterClockwise={true}
       text={formattedTime}
-      strokeWidth={props.intervalIdRef ? 0 : 3}
+      strokeWidth={intervalIdRef ? 0 : 3}
       styles={{
         path: {
           stroke: '#FE9F06',

@@ -7,10 +7,12 @@ import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonS
 import { ITimerComponentProps } from "../../types/interfaces";
 
 
-function Timer({isStarted, setIsStarted, timerSeconds, setTimerSeconds}: ITimerComponentProps) {
+function Timer({...props}: ITimerComponentProps) {
   // const [seconds, setSeconds] = useState<number>(0);
   // const [isStarted, setIsStarted] = useState(false); //вынес в App, позже уберу в useContext
   const intervalIdRef = useRef<NodeJS.Timeout>();
+
+  const {isStarted, setIsStarted, timerSeconds, setTimerSeconds} = props;
 
 
   const handleStart = useCallback(() => {
