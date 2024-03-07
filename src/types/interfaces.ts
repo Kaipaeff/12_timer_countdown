@@ -8,7 +8,7 @@ export interface ISwitchComponentProps {
 }
 
 export interface ITimerComponentProps {
-  intervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+  timerIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
   isStarted: boolean;
   setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
   timerSeconds: number;
@@ -18,7 +18,7 @@ export interface ITimerComponentProps {
 export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'isStarted' | 'setIsStarted'> {
   countSeconds: number;
   setCountSeconds: React.Dispatch<React.SetStateAction<number>>;
-  countIntervalRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+  countIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
 }
 
 export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted'> {}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -9,25 +9,40 @@ import { formatTimerTime, formatCountDownTime } from '../../services/formatTime'
 
 export default function CircularProgress({...props}: ICircularProgressProps) {
 
-  const {intervalIdRef, timerSeconds, countSeconds} = props;
+  const {timerIntervalIdRef, countIntervalIdRef, timerSeconds, countSeconds, isStarted} = props;
+
+  let totalTime;
+
+  useEffect(() => {
+    totalTime = countSeconds; //! тут не закончил, нужно разобраться
+    console.log('totalTime:', totalTime, 'countSeconds:', countSeconds);
+  }, [])
   
   const formattedTime = useMemo(() => {
-    return intervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
-  }, [intervalIdRef, timerSeconds, countSeconds])
+    return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
+  }, [timerIntervalIdRef, timerSeconds, countSeconds])
+
+  console.log('countIntervalIdRef_fromCircular', countIntervalIdRef?.current);
+  console.log('isStarted_fromCircular', isStarted);
   
 
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
       value={countSeconds!} 
-      maxValue={countSeconds! > 3600 ? countSeconds! : 3600} //! Это выражение не работает! Нужно значение инпута помещать в стейт, класть в контекст и доставать тут для использования.
+      minValue={0}
+      maxValue={totalTime} //! Это выражение не работает! Нужно значение инпута помещать в стейт, класть в контекст и доставать тут для использования.
       counterClockwise={true}
+      // circleRatio={1}
       text={formattedTime}
-      strokeWidth={intervalIdRef ? 0 : 3}
+      strokeWidth={4}
       styles={{
-        path: {
-          stroke: '#FE9F06',
-        },
+        path: 
+        {stroke:
+          isStarted ? '#DEFFE6' // Светло-зеленый
+            : (timerIntervalIdRef?.current || countIntervalIdRef?.current) ? '#FFF0D7' // Светло-оранжевый
+            : '#D6D6D6' // Серый
+        },  
         text: {
           fill: '#737373',
           fontSize: '20px',

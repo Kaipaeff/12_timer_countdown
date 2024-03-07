@@ -7,6 +7,8 @@ import { ISetTimeComponentProps } from "../../types/interfaces";
 
   //! Сейчас инпуты работают по принципу или-или: ввод в один инпут стирает данные во втором. Нужно фиксить.
 
+  //! добавить блокировку инпутов при паузе отсчета
+
 export default function SetTime({...props}: ISetTimeComponentProps) {
 
   const {isStarted, countSeconds, setCountSeconds} = props;
