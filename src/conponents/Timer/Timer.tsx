@@ -25,7 +25,7 @@ function Timer({...props}: ITimerComponentProps) {
       clearInterval(timerIntervalIdRef.current);
     }
     setIsStarted((prev: boolean) => !prev);
-  }, [isStarted]);
+  }, [isStarted, timerIntervalIdRef.current]);
 
 
   const handleReset = useCallback(() => {
@@ -33,7 +33,7 @@ function Timer({...props}: ITimerComponentProps) {
     setIsStarted(false);
     clearInterval(timerIntervalIdRef.current);
     timerIntervalIdRef.current = undefined;
-  }, [])
+  }, [timerIntervalIdRef.current])
 
 
   return (
