@@ -1,25 +1,25 @@
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, memo } from "react";
 
 import CircularProgress from "../CircularProgress/CircularProgress";
 
 import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
-import { CancelControlButtonStyles, PauseControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
+import { CancelControlButtonStyles, PauseControlButtonStyles, StartControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import SetTime from "../SetTime/SetTime";
 import { ICountdownComponentProps } from "../../types/interfaces";
 
 
-export default function Countdown({...props}: ICountdownComponentProps) {
+function Countdown({...props}: ICountdownComponentProps) {
   const countIntervalIdRef = useRef<NodeJS.Timeout>();
 
   const {isStarted, setIsStarted, countSeconds, setCountSeconds} = props;
 
-  //! в эффекте реализовать обнуление таймера при смене вкладки. Тут, или в Свитчере. Не важно, в самом конце можно сделать!
+  //! в эффекте (?) реализовать обнуление таймера при смене вкладки. Тут, или в Свитчере. Не важно, в самом конце можно сделать!
 
   useEffect(() => {
     if(countSeconds === 0) {
       setIsStarted(false);
       clearInterval(countIntervalIdRef.current);
-      countIntervalIdRef.current = undefined; //! добавил
+      countIntervalIdRef.current = undefined;
     }
    }, [countSeconds])
 
@@ -59,3 +59,5 @@ export default function Countdown({...props}: ICountdownComponentProps) {
     </>
   )
 }
+
+export default memo(Countdown);

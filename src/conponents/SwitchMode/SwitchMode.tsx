@@ -1,16 +1,17 @@
+import { memo, useCallback } from "react";
 import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
-export default function SwitchMode({...props}: ISwitchComponentProps) {
+function SwitchMode({...props}: ISwitchComponentProps) {
 
   const {setMode, setIsStarted, setTimerSeconds, setCountSeconds, mode, countSeconds} = props;
 
-  const handleSwitchMode = (type: string): void => {
+  const handleSwitchMode = useCallback((type: string): void => {
     setMode!(type);
     setIsStarted!(false);
     setTimerSeconds!(0);
     setCountSeconds!(countSeconds!);
-  }
+  }, [countSeconds]);
 
 
   return (
@@ -21,3 +22,5 @@ export default function SwitchMode({...props}: ISwitchComponentProps) {
     </SwitchBlockStyles>
   )
 }
+
+export default memo(SwitchMode);

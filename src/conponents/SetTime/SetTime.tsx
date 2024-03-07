@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo, useCallback } from "react";
 
 import { Slider, TextField } from "@mui/material";
 import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
@@ -9,14 +9,14 @@ import { ISetTimeComponentProps } from "../../types/interfaces";
 
   //! добавить блокировку инпутов при паузе отсчета
 
-export default function SetTime({...props}: ISetTimeComponentProps) {
+function SetTime({...props}: ISetTimeComponentProps) {
 
   const {isStarted, countSeconds, setCountSeconds} = props;
 
   let minutes = 0;
   let seconds = 0;
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {  
+  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
     const {id, value} = event.target;
     if(!isStarted) {
       if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
@@ -24,17 +24,17 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
       } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
         seconds = Number(value) % 1000;
       }
-      setCountSeconds((prev) => prev = seconds + minutes);
+      setCountSeconds(prev => prev = seconds + minutes);
       // console.log('countSeconds_INPUTS:', countSeconds);
     }
-  }
+  }, [isStarted]);
   
-  const handleSliderChange = (event: Event, value: number | number[]) => {
+  const handleSliderChange = useCallback((event: Event, value: number | number[]) => {
     if(!isStarted && typeof value === "number") {
       setCountSeconds((prev) => prev = value);
       // console.log('countSeconds_SLIDER:', countSeconds);
     }
-  }
+  }, [isStarted]);
 
 
   return (
@@ -88,3 +88,4 @@ export default function SetTime({...props}: ISetTimeComponentProps) {
   )
 }
 
+export default memo(SetTime);
