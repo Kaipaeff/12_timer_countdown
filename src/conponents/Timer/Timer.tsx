@@ -10,7 +10,7 @@ import { ITimerComponentProps } from "../../types/interfaces";
 
 function Timer({...props}: ITimerComponentProps) {
   // const [seconds, setSeconds] = useState<number>(0);
-  // const [isStarted, setIsStarted] = useState(false); //вынес в App, позже уберу в useContext
+  // const [isStarted, setIsStarted] = useState(false); //!вынес в App, позже уберу в useContext
   const timerIntervalIdRef = useRef<NodeJS.Timeout>();
 
   const {isStarted, setIsStarted, timerSeconds, setTimerSeconds} = props;

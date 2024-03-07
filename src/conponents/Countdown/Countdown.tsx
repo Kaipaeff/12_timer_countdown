@@ -19,6 +19,7 @@ export default function Countdown({...props}: ICountdownComponentProps) {
     if(countSeconds === 0) {
       setIsStarted(false);
       clearInterval(countIntervalIdRef.current);
+      countIntervalIdRef.current = undefined; //! добавил
     }
    }, [countSeconds])
 
@@ -44,10 +45,6 @@ export default function Countdown({...props}: ICountdownComponentProps) {
   }, [setCountSeconds, setIsStarted, countIntervalIdRef.current])
 
 
-  console.log('countIntervalIdRef_from_COUNT', countIntervalIdRef.current);
-  console.log('isStarted_from_COUNT', isStarted);
-
-
   return (
     <>
       <SetTime isStarted={isStarted} countSeconds={countSeconds} setCountSeconds={setCountSeconds}/>
@@ -55,7 +52,8 @@ export default function Countdown({...props}: ICountdownComponentProps) {
       
       <InnerWrapperBlockStyles>
         <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} bcg1="white"/>
-        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef.current ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>}
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>}
+        {/* {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef.current ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>} */}
         {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} bcg1="white"/> }
       </InnerWrapperBlockStyles>
     </>

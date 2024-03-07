@@ -15,25 +15,21 @@ export default function CircularProgress({...props}: ICircularProgressProps) {
 
   useEffect(() => {
     totalTime = countSeconds; //! тут не закончил, нужно разобраться
-    console.log('totalTime:', totalTime, 'countSeconds:', countSeconds);
+    // console.log('totalTime:', totalTime, 'countSeconds:', countSeconds);
   }, [])
   
   const formattedTime = useMemo(() => {
     return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [timerIntervalIdRef, timerSeconds, countSeconds])
-
-  console.log('countIntervalIdRef_fromCircular', countIntervalIdRef?.current);
-  console.log('isStarted_fromCircular', isStarted);
   
+    // console.log('timerSeconds:', Math.floor(timerSeconds! / 1000));
 
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
-      value={countSeconds!} 
-      minValue={0}
-      maxValue={totalTime} //! Это выражение не работает! Нужно значение инпута помещать в стейт, класть в контекст и доставать тут для использования.
-      counterClockwise={true}
-      // circleRatio={1}
+      value={countSeconds! || (Math.floor(timerSeconds! / 1000))} 
+      maxValue={3600} //! Это выражение не работает! Нужно значение инпута помещать в стейт, класть в контекст и доставать тут для использования.
+      counterClockwise={countSeconds! > 0 ? true : false}
       text={formattedTime}
       strokeWidth={4}
       styles={{
