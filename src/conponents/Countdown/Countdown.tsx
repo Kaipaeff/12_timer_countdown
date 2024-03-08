@@ -47,7 +47,7 @@ function Countdown({...props}: ICountdownComponentProps) {
 
   return (
     <>
-      <SetTime isStarted={isStarted} countSeconds={countSeconds} setCountSeconds={setCountSeconds}/>
+      <SetTime isStarted={isStarted} countSeconds={countSeconds} setCountSeconds={setCountSeconds} countIntervalIdRef={countIntervalIdRef}/>
       <CircularProgress countSeconds={countSeconds} countIntervalIdRef={countIntervalIdRef} isStarted={isStarted} />
       
       <InnerWrapperBlockStyles>
