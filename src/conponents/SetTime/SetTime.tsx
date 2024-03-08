@@ -6,8 +6,8 @@ import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockSt
 import { ISetTimeComponentProps } from "../../types/interfaces";
 
 
-function SetTime({...props}: ISetTimeComponentProps) {
-  const {isStarted, countSeconds, setCountSeconds, countIntervalIdRef} = props;
+function SetTime({...props}: ISetTimeComponentProps) {  
+  const {isStarted, countSeconds, setCountSeconds, countIntervalIdRef, setBarMaxValue} = props;
 
   const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
     const {id, value} = event.target;
@@ -15,9 +15,14 @@ function SetTime({...props}: ISetTimeComponentProps) {
       if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
         const updatedMinutes = Number(value) * 60;
         setCountSeconds(prev => updatedMinutes + prev % 60);
+        // setBarMaxValue(updatedMinutes);
+        setBarMaxValue(prev => prev + updatedMinutes);
+        // setBarMaxValue(prev => prev = countSeconds);
       } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
         const updatedSeconds = Number(value) % 1000
         setCountSeconds(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
+        setBarMaxValue(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
+     // setBarMaxValue(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
       }
     }
   }, [isStarted]);
