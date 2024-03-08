@@ -8,19 +8,19 @@ import { ICircularProgressProps } from '../../types/interfaces';
 import { formatTimerTime, formatCountDownTime } from '../../services/formatTime';
 
 function CircularProgress({...props}: ICircularProgressProps) {
+  const {timerIntervalIdRef, countIntervalIdRef, timerSeconds, countSeconds, isStarted, barMaxValue} = props;
 
-  const {timerIntervalIdRef, countIntervalIdRef, timerSeconds, countSeconds, isStarted} = props;
-  
   const formattedTime = useMemo(() => {
     return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [timerIntervalIdRef, timerSeconds, countSeconds])
-  
+
+  // console.log('barMaxValue  into CircularProgress', barMaxValue);  //! убрать после дебаггинга!
 
   return (
   <CircularProgressbarStyles>
     <CircularProgressbar 
       value={countSeconds! || (Math.floor(timerSeconds! / 1000))} 
-      maxValue={3600}
+      maxValue={timerSeconds! > 0 ? 3600 : barMaxValue!}
       counterClockwise={countSeconds! > 0 ? true : false}
       text={formattedTime}
       strokeWidth={4}

@@ -10,32 +10,27 @@ import { ICountdownComponentProps } from "../../types/interfaces";
 
 function Countdown({...props}: ICountdownComponentProps) {
   const countIntervalIdRef = useRef<NodeJS.Timeout>();
-
-  const {isStarted, setIsStarted, countSeconds, setCountSeconds} = props;
-
-  //! в эффекте (?) реализовать обнуление таймера при смене вкладки. Тут, или в Свитчере. Не важно, в самом конце можно сделать!
+  const {isStarted, setIsStarted, countSeconds, setCountSeconds, barMaxValue, setBarMaxValue} = props;
 
   useEffect(() => {
-    if(countSeconds === 0) {
+    if(!countSeconds) {
       setIsStarted(false);
       clearInterval(countIntervalIdRef.current);
       countIntervalIdRef.current = undefined;
     }
-   }, [countSeconds])
-
+   }, [countSeconds]);
 
   const handleStart = useCallback(() => {
     if(!isStarted && countSeconds >= 1) {
       countIntervalIdRef.current = setInterval(() => {  
         setCountSeconds((prev: number) => prev - 1);
-        console.log('HAVEorNOT?!');
+        console.log('ticked...'); //! убрать после дебаггинга
       }, 1000);
     } else {
       clearInterval(countIntervalIdRef.current);
     }
     setIsStarted((prev: boolean) => !prev);
   }, [isStarted, countSeconds, countIntervalIdRef.current]);
-
 
   const handleReset = useCallback(() => {
     setCountSeconds(0);
@@ -47,13 +42,25 @@ function Countdown({...props}: ICountdownComponentProps) {
 
   return (
     <>
-      <SetTime isStarted={isStarted} countSeconds={countSeconds} setCountSeconds={setCountSeconds} countIntervalIdRef={countIntervalIdRef}/>
-      <CircularProgress countSeconds={countSeconds} countIntervalIdRef={countIntervalIdRef} isStarted={isStarted} />
+      <SetTime 
+        isStarted={isStarted} 
+        countSeconds={countSeconds} 
+        setCountSeconds={setCountSeconds} 
+        countIntervalIdRef={countIntervalIdRef} 
+        setBarMaxValue={setBarMaxValue}
+      />
+
+      <CircularProgress 
+        countSeconds={countSeconds} 
+        countIntervalIdRef={countIntervalIdRef} 
+        isStarted={isStarted} 
+        barMaxValue={barMaxValue} 
+        setBarMaxValue={setBarMaxValue}
+      />
       
       <InnerWrapperBlockStyles>
         <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} bcg1="white"/>
         {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>}
-        {/* {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef.current ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>} */}
         {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} bcg1="white"/> }
       </InnerWrapperBlockStyles>
     </>

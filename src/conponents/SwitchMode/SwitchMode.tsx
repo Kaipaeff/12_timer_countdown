@@ -3,7 +3,6 @@ import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
 function SwitchMode({...props}: ISwitchComponentProps) {
-
   const {setMode, setIsStarted, setTimerSeconds, setCountSeconds, mode, countSeconds} = props;
 
   const handleSwitchMode = useCallback((type: string): void => {
