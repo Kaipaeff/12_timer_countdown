@@ -17,6 +17,7 @@ function Countdown({...props}: ICountdownComponentProps) {
       setIsStarted(false);
       clearInterval(countIntervalIdRef.current);
       countIntervalIdRef.current = undefined;
+      setBarMaxValue(0);
     }
    }, [countSeconds]);
 

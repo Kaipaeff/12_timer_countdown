@@ -15,8 +15,8 @@ function SetTime({...props}: ISetTimeComponentProps) {
       if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
         const updatedMinutes = Number(value) * 60;
         setCountSeconds(prev => updatedMinutes + prev % 60);
-        // setBarMaxValue(updatedMinutes);
-        setBarMaxValue(prev => prev + updatedMinutes);
+        setBarMaxValue(prev => prev = updatedMinutes);
+        // setBarMaxValue(prev => prev + updatedMinutes);
         // setBarMaxValue(prev => prev = countSeconds);
       } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
         const updatedSeconds = Number(value) % 1000
