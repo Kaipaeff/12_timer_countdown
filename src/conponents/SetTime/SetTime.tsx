@@ -5,34 +5,26 @@ import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockSt
 
 import { ISetTimeComponentProps } from "../../types/interfaces";
 
-  //! Сейчас инпуты работают по принципу или-или: ввод в один инпут стирает данные во втором. Нужно фиксить.
-
-  //! добавить блокировку инпутов при паузе отсчета
 
 function SetTime({...props}: ISetTimeComponentProps) {
-
-  const {isStarted, countSeconds, setCountSeconds} = props;
-
-  let minutes = 0;
-  let seconds = 0;
+  const {isStarted, countSeconds, setCountSeconds, countIntervalIdRef} = props;
 
   const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
     const {id, value} = event.target;
     if(!isStarted) {
       if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
-        minutes = Number(value) * 60;
+        const updatedMinutes = Number(value) * 60;
+        setCountSeconds(prev => updatedMinutes + prev % 60);
       } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
-        seconds = Number(value) % 1000;
+        const updatedSeconds = Number(value) % 1000
+        setCountSeconds(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
       }
-      setCountSeconds(prev => prev = seconds + minutes);
-      // console.log('countSeconds_INPUTS:', countSeconds);
     }
   }, [isStarted]);
-  
-  const handleSliderChange = useCallback((event: Event, value: number | number[]) => {
+
+  const handleSliderChange = useCallback((_event: Event, value: number | number[]) => {
     if(!isStarted && typeof value === "number") {
       setCountSeconds((prev) => prev = value);
-      // console.log('countSeconds_SLIDER:', countSeconds);
     }
   }, [isStarted]);
 
@@ -50,7 +42,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
         max={3600}
         value={countSeconds}
         color={'warning'}
-        disabled={isStarted}
+        disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
         onChange={handleSliderChange}
       />
       <SetTimeInnerWrapperBlockStyles>
@@ -63,7 +55,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
             width: 120,
           }}
           size="small"
-          disabled={isStarted}
+          disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
           inputProps={{ min: 0, max: 720 }}
           value={Math.floor(countSeconds / 60)}
           onChange={handleInputChange}
@@ -78,7 +70,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
             width: 120,
           }}
           size="small"
-          disabled={isStarted}
+          disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
           inputProps={{ min: 0, max: 59 }}
           value={countSeconds % 60}
           onChange={handleInputChange}

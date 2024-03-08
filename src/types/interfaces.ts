@@ -21,7 +21,9 @@ export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'is
   countIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
 }
 
-export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted'> {}
+export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted' | 'countIntervalIdRef'> {
+
+}
 
 export interface ICircularProgressProps extends Partial<ITimerComponentProps>, Partial<ICountdownComponentProps> {}
 
