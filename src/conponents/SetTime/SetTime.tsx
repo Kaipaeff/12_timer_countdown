@@ -31,7 +31,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
     }
   }, [isStarted]);
 
-
+  //! Здесь добавить максВалюэ для Слайдера, чтобы при вводе в инпуты сразу отображалось вэлюэ прогрессбара
   return (
     <>
       <Slider
