@@ -2,7 +2,6 @@ import { memo, useCallback } from "react";
 import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
-//! сбрасывать таймеры при смене вкладок
 
 function SwitchMode({...props}: ISwitchComponentProps) {
   const {
@@ -11,7 +10,9 @@ function SwitchMode({...props}: ISwitchComponentProps) {
     setTimerSeconds, 
     setCountSeconds, 
     mode, 
-    countSeconds
+    countSeconds,
+    timerIntervalIdRef,
+    countIntervalIdRef,
   } = props;
 
   const handleSwitchMode = useCallback((type: string): void => {
@@ -19,6 +20,10 @@ function SwitchMode({...props}: ISwitchComponentProps) {
     setIsStarted!(false);
     setTimerSeconds!(0);
     setCountSeconds!(countSeconds!);
+    clearInterval(timerIntervalIdRef!.current);
+    timerIntervalIdRef!.current = undefined;
+    clearInterval(countIntervalIdRef!.current);
+    countIntervalIdRef!.current = undefined;
   }, [countSeconds]);
 
 

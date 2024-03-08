@@ -5,6 +5,8 @@ export interface ISwitchComponentProps {
   setTimerSeconds?: React.Dispatch<React.SetStateAction<number>>;
   setCountSeconds?: React.Dispatch<React.SetStateAction<number>>;
   countSeconds?: number;
+  timerIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
+  countIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
 }
 
 export interface ITimerComponentProps {

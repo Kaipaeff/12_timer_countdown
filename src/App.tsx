@@ -27,6 +27,8 @@ function App() {
         setTimerSeconds={setTimerSeconds} 
         setCountSeconds={setCountSeconds} 
         countSeconds={countSeconds}
+        timerIntervalIdRef={timerIntervalIdRef}
+        countIntervalIdRef={countIntervalIdRef}
       />
       {mode === 'timer' && <Timer 
         isStarted={isStarted} 
