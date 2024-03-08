@@ -21,9 +21,7 @@ export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'is
   countIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
   barMaxValue: number;
   setBarMaxValue: React.Dispatch<React.SetStateAction<number>>;
-  // barMaxValueUpdate?: ((newValue: (prev: number) => number) => void) | undefined;
-  // initialBarMaxValue?: number | null;
-  // setInitialBarMaxValue?: React.Dispatch<React.SetStateAction<number>>;
+  totalTime?: string;
 }
 
 export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted' | 'countIntervalIdRef' | 'setBarMaxValue'> {}

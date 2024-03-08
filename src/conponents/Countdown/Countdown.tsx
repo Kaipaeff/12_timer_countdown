@@ -6,11 +6,14 @@ import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, PauseControlButtonStyles, StartControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import SetTime from "../SetTime/SetTime";
 import { ICountdownComponentProps } from "../../types/interfaces";
+import { formatCountDownTime } from "../../services/formatTime";
 
 
 function Countdown({...props}: ICountdownComponentProps) {
   const countIntervalIdRef = useRef<NodeJS.Timeout>();
   const {isStarted, setIsStarted, countSeconds, setCountSeconds, barMaxValue, setBarMaxValue} = props;
+
+  const totalTime = formatCountDownTime(barMaxValue);
 
   useEffect(() => {
     if(!countSeconds) {
@@ -37,7 +40,7 @@ function Countdown({...props}: ICountdownComponentProps) {
     setIsStarted(false);
     clearInterval(countIntervalIdRef.current);
     countIntervalIdRef.current = undefined;
-  }, [setCountSeconds, setIsStarted, countIntervalIdRef.current])
+  }, [setCountSeconds, setIsStarted, countIntervalIdRef.current]);
 
 
   return (
@@ -56,6 +59,7 @@ function Countdown({...props}: ICountdownComponentProps) {
         isStarted={isStarted} 
         barMaxValue={barMaxValue} 
         setBarMaxValue={setBarMaxValue}
+        totalTime={totalTime}
       />
       
       <InnerWrapperBlockStyles>
