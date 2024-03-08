@@ -1,9 +1,7 @@
 import { memo, useMemo } from 'react';
-
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { CircularProgressbarStyles, ProgressbarMainValueStyles } from './CircularProgress.styles';
-
 import { ICircularProgressProps } from '../../types/interfaces';
 import { formatTimerTime, formatCountDownTime } from '../../services/formatTime';
 
@@ -14,19 +12,17 @@ function CircularProgress({...props}: ICircularProgressProps) {
     timerSeconds, 
     countSeconds, 
     isStarted, 
-    barMaxValue, 
-    totalTime 
+    barMaxValue,  
   } = props;
 
   const formattedTime = useMemo(() => {
     return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [timerIntervalIdRef, timerSeconds, countSeconds])
 
-  console.log('barMaxValue  into CircularProgress', barMaxValue);  //! после прочтения - сжечь!
 
   return (
     <CircularProgressbarStyles>
-      {countSeconds! > 0 && <ProgressbarMainValueStyles>{totalTime}</ProgressbarMainValueStyles>}
+      {countSeconds! > 0 && <ProgressbarMainValueStyles>{formatCountDownTime(barMaxValue!)}</ProgressbarMainValueStyles>}
       <CircularProgressbar 
         value={countSeconds! || (Math.floor(timerSeconds! / 1000))} 
         maxValue={timerSeconds! > 0 ? 3600 : barMaxValue!}

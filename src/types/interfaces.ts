@@ -1,5 +1,5 @@
 export interface ISwitchComponentProps {
-  mode: string;
+  mode?: string;
   setMode?: (type: string) => void;
   setIsStarted?: React.Dispatch<React.SetStateAction<boolean>>;
   setTimerSeconds?: React.Dispatch<React.SetStateAction<number>>;
@@ -21,7 +21,6 @@ export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'is
   countIntervalIdRef?: React.MutableRefObject<NodeJS.Timeout | undefined>;
   barMaxValue: number;
   setBarMaxValue: React.Dispatch<React.SetStateAction<number>>;
-  totalTime?: string;
 }
 
 export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted' | 'countIntervalIdRef' | 'setBarMaxValue'> {}

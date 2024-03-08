@@ -1,33 +1,36 @@
-import { useRef, useCallback, memo } from "react";
-
+import { useCallback, memo } from "react";
 import CircularProgress from "../CircularProgress/CircularProgress";
-
 import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import { ITimerComponentProps } from "../../types/interfaces";
 
 
 function Timer({...props}: ITimerComponentProps) {
-  const timerIntervalIdRef = useRef<NodeJS.Timeout>();
-  const {isStarted, setIsStarted, timerSeconds, setTimerSeconds} = props;
+  const {
+    isStarted, 
+    setIsStarted, 
+    timerSeconds, 
+    setTimerSeconds, 
+    timerIntervalIdRef
+  } = props;
 
   const handleStart = useCallback(() => {
     if(!isStarted) {
-      timerIntervalIdRef.current = setInterval(() => {  
+      timerIntervalIdRef!.current = setInterval(() => {  
         setTimerSeconds((prev: number) => prev + 10);
       }, 10);
     } else {
-      clearInterval(timerIntervalIdRef.current);
+      clearInterval(timerIntervalIdRef!.current);
     }
     setIsStarted((prev: boolean) => !prev);
-  }, [isStarted, timerIntervalIdRef.current]);
+  }, [isStarted, timerIntervalIdRef!.current]);
 
   const handleReset = useCallback(() => {
     setTimerSeconds(0);
     setIsStarted(false);
-    clearInterval(timerIntervalIdRef.current);
-    timerIntervalIdRef.current = undefined;
-  }, [timerIntervalIdRef.current])
+    clearInterval(timerIntervalIdRef!.current);
+    timerIntervalIdRef!.current = undefined;
+  }, [timerIntervalIdRef!.current])
 
 
   return (
