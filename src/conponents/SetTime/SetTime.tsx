@@ -12,24 +12,22 @@ function SetTime({...props}: ISetTimeComponentProps) {
   const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
     const {id, value} = event.target;
     if(!isStarted) {
+      const updatedMinutes = Number(value) * 60;
+      const updatedSeconds = Number(value) % 1000
       if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
-        const updatedMinutes = Number(value) * 60;
         setCountSeconds(prev => updatedMinutes + prev % 60);
-        // setBarMaxValue(updatedMinutes);
-        setBarMaxValue(prev => prev + updatedMinutes);
-        // setBarMaxValue(prev => prev = countSeconds);
+        setBarMaxValue(prev => updatedMinutes + prev % 60);
       } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
-        const updatedSeconds = Number(value) % 1000
         setCountSeconds(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
         setBarMaxValue(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
-     // setBarMaxValue(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
       }
     }
   }, [isStarted]);
 
   const handleSliderChange = useCallback((_event: Event, value: number | number[]) => {
     if(!isStarted && typeof value === "number") {
-      setCountSeconds((prev) => prev = value);
+      setCountSeconds(prev => prev = value);
+      setBarMaxValue(prev => prev = value);
     }
   }, [isStarted]);
 

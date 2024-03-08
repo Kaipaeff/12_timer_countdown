@@ -14,7 +14,7 @@ function CircularProgress({...props}: ICircularProgressProps) {
     return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [timerIntervalIdRef, timerSeconds, countSeconds])
 
-  // console.log('barMaxValue  into CircularProgress', barMaxValue);  //! убрать после дебаггинга!
+  console.log('barMaxValue  into CircularProgress', barMaxValue);  //! убрать после дебаггинга!
 
   return (
   <CircularProgressbarStyles>

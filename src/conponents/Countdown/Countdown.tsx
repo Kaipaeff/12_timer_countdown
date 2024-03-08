@@ -17,6 +17,7 @@ function Countdown({...props}: ICountdownComponentProps) {
       setIsStarted(false);
       clearInterval(countIntervalIdRef.current);
       countIntervalIdRef.current = undefined;
+      setBarMaxValue(0);
     }
    }, [countSeconds]);
 
@@ -24,7 +25,6 @@ function Countdown({...props}: ICountdownComponentProps) {
     if(!isStarted && countSeconds >= 1) {
       countIntervalIdRef.current = setInterval(() => {  
         setCountSeconds((prev: number) => prev - 1);
-        console.log('ticked...'); //! убрать после дебаггинга
       }, 1000);
     } else {
       clearInterval(countIntervalIdRef.current);
