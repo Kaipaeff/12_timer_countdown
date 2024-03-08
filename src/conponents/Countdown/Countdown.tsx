@@ -25,7 +25,6 @@ function Countdown({...props}: ICountdownComponentProps) {
     if(!isStarted && countSeconds >= 1) {
       countIntervalIdRef.current = setInterval(() => {  
         setCountSeconds((prev: number) => prev - 1);
-        console.log('ticked...'); //! убрать после дебаггинга
       }, 1000);
     } else {
       clearInterval(countIntervalIdRef.current);
