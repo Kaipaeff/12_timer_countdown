@@ -66,6 +66,7 @@ export const StartControlButtonStyles = styled(ControlButton)<IButtonProps>`
         box-shadow: none;
         }
     }
+  }
 `
 
 export const StopControlButtonStyles = styled(ControlButton)<IButtonProps>`
@@ -83,6 +84,7 @@ export const StopControlButtonStyles = styled(ControlButton)<IButtonProps>`
         box-shadow: none;
         }
     }
+  }
 `
 
 export const CancelControlButtonStyles = styled(ControlButton)<IButtonProps>`
@@ -100,6 +102,7 @@ export const CancelControlButtonStyles = styled(ControlButton)<IButtonProps>`
         box-shadow: none;
         }
     }
+  }
 `
 
 export const PauseControlButtonStyles = styled(ControlButton)<IButtonProps>`
@@ -117,4 +120,5 @@ export const PauseControlButtonStyles = styled(ControlButton)<IButtonProps>`
         box-shadow: none;
         }
     }
+  }
 `

@@ -41,7 +41,7 @@ function Countdown({...props}: ICountdownComponentProps) {
     setIsStarted(false);
     clearInterval(countIntervalIdRef!.current);
     countIntervalIdRef!.current = undefined;
-  }, [countIntervalIdRef!.current]); //! Спросить, нужно ли указывать функции в массиве зависимостей! //Уточнить насчет восклицательных знаков
+  }, [countIntervalIdRef!.current]);
 
 
   return (
