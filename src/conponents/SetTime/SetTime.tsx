@@ -30,8 +30,8 @@ function SetTime({...props}: ISetTimeComponentProps) {
 
   const handleSliderChange = useCallback((_event: Event, value: number | number[]) => {
     if(!isStarted && typeof value === "number") {
-      setCountSeconds(prev => prev = value);
-      setBarMaxValue(prev => prev = value);
+      setCountSeconds(value);
+      setBarMaxValue(value);
     }
   }, [isStarted]);
 
