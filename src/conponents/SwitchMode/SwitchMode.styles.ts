@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
 import { ISwitchComponentProps } from "../../types/interfaces";
 
-
-export const SwitchBlockStyles = styled.section`
+export const SwitchBlockStyles = styled.section<ISwitchComponentProps>`
   position: relative;
   display: flex;
   justify-content: space-between;

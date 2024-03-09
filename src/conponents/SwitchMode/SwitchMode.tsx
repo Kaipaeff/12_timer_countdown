@@ -2,14 +2,28 @@ import { memo, useCallback } from "react";
 import { ISwitchComponentProps } from "../../types/interfaces";
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
+
 function SwitchMode({...props}: ISwitchComponentProps) {
-  const {setMode, setIsStarted, setTimerSeconds, setCountSeconds, mode, countSeconds} = props;
+  const {
+    setMode, 
+    setIsStarted, 
+    setTimerSeconds, 
+    setCountSeconds, 
+    mode, 
+    countSeconds,
+    timerIntervalIdRef,
+    countIntervalIdRef,
+  } = props;
 
   const handleSwitchMode = useCallback((type: string): void => {
     setMode!(type);
     setIsStarted!(false);
     setTimerSeconds!(0);
     setCountSeconds!(countSeconds!);
+    clearInterval(timerIntervalIdRef!.current);
+    timerIntervalIdRef!.current = undefined;
+    clearInterval(countIntervalIdRef!.current);
+    countIntervalIdRef!.current = undefined;
   }, [countSeconds]);
 
 

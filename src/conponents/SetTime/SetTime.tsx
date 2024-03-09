@@ -1,13 +1,17 @@
 import { ChangeEvent, memo, useCallback } from "react";
-
 import { Slider, TextField } from "@mui/material";
 import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
-
 import { ISetTimeComponentProps } from "../../types/interfaces";
 
 
 function SetTime({...props}: ISetTimeComponentProps) {  
-  const {isStarted, countSeconds, setCountSeconds, countIntervalIdRef, setBarMaxValue} = props;
+  const {
+    isStarted, 
+    countSeconds, 
+    setCountSeconds, 
+    countIntervalIdRef, 
+    setBarMaxValue,
+  } = props;
 
   const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
     const {id, value} = event.target;
@@ -31,7 +35,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
     }
   }, [isStarted]);
 
-  //! Здесь добавить максВалюэ для Слайдера, чтобы при вводе в инпуты сразу отображалось вэлюэ прогрессбара
+
   return (
     <>
       <Slider
