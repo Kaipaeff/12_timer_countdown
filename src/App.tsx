@@ -7,7 +7,7 @@ import { ContainerStyles } from "./styles/ContainerStyles";
 
 
 function App() {
-  const [mode, setMode] = useState('countdown');                        //!вынести в useContext
+  const [mode, setMode] = useState('timer');                        //!вынести в useContext
   const [isStarted, setIsStarted] = useState(false);                //!вынести в useContext
   const [timerSeconds, setTimerSeconds] = useState<number>(0);      //!вынести в useContext
   const [countSeconds, setCountSeconds] = useState<number>(0);      //!вынести в useContext

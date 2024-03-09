@@ -32,7 +32,8 @@ function CircularProgress({...props}: ICircularProgressProps) {
         styles={{
           path: 
           {stroke:
-            isStarted ? '#DEFFE6' // Светло-зеленый
+            isStarted 
+              ? '#DEFFE6' // Светло-зеленый
               : (timerIntervalIdRef?.current || countIntervalIdRef?.current) ? '#FFF0D7' // Светло-оранжевый
               : '#D6D6D6' // Серый
           },  
