@@ -13,8 +13,8 @@ function SetTime({...props}: ISetTimeComponentProps) {
     setBarMaxValue,
   } = props;
 
-  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {  
-    const {id, value} = event.target;
+  const handleInputChange = useCallback(({target: {id, value}}: ChangeEvent<HTMLInputElement>) => {  
+    // const {id, value} = event.target;    //!!!!!!!!!!!!!!!!!!!
     if(!isStarted) {
       const updatedMinutes = Number(value) * 60;
       const updatedSeconds = Number(value) % 1000
