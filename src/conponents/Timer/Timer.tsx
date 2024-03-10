@@ -4,7 +4,6 @@ import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import { ITimerComponentProps } from "../../types/interfaces";
 
-
 function Timer({...props}: ITimerComponentProps) {
   const {
     isStarted, 
@@ -31,7 +30,6 @@ function Timer({...props}: ITimerComponentProps) {
     clearInterval(timerIntervalIdRef!.current);
     timerIntervalIdRef!.current = undefined;
   }, [timerIntervalIdRef!.current])
-
 
   return (
     <>

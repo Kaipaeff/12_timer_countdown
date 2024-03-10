@@ -3,7 +3,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { CircularProgressbarStyles, ProgressbarMainValueStyles } from './CircularProgress.styles';
 import { ICircularProgressProps } from '../../types/interfaces';
-import { formatTimerTime, formatCountDownTime } from '../../services/formatTime';
+import { formatTimerTime, formatCountDownTime } from '../../utilities/formatTime';
 
 function CircularProgress({...props}: ICircularProgressProps) {
   const {
@@ -18,7 +18,6 @@ function CircularProgress({...props}: ICircularProgressProps) {
   const formattedTime = useMemo(() => {
     return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
   }, [timerIntervalIdRef, timerSeconds, countSeconds])
-
 
   return (
     <CircularProgressbarStyles>

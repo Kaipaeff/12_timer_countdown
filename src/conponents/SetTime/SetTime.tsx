@@ -3,7 +3,6 @@ import { Slider, TextField } from "@mui/material";
 import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { ISetTimeComponentProps } from "../../types/interfaces";
 
-
 function SetTime({...props}: ISetTimeComponentProps) {  
   const {
     isStarted, 
@@ -34,7 +33,6 @@ function SetTime({...props}: ISetTimeComponentProps) {
       setBarMaxValue(value);
     }
   }, [isStarted]);
-
 
   return (
     <>

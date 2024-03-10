@@ -5,18 +5,15 @@ import Countdown from "./conponents/Countdown/Countdown";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { ContainerStyles } from "./styles/ContainerStyles";
 
-
 function App() {
   const [mode, setMode] = useState('timer');                        //!вынести в useContext
   const [isStarted, setIsStarted] = useState(false);                //!вынести в useContext
   const [timerSeconds, setTimerSeconds] = useState<number>(0);      //!вынести в useContext
   const [countSeconds, setCountSeconds] = useState<number>(0);      //!вынести в useContext
   const [barMaxValue, setBarMaxValue] = useState<number>(0);        //!вынести в useContext
-
   const countIntervalIdRef = useRef<NodeJS.Timeout>();
   const timerIntervalIdRef = useRef<NodeJS.Timeout>();
 
-  
   return (
     <ContainerStyles>
       <GlobalStyles />

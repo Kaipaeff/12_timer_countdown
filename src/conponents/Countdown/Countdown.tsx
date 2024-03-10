@@ -43,7 +43,6 @@ function Countdown({...props}: ICountdownComponentProps) {
     countIntervalIdRef!.current = undefined;
   }, [countIntervalIdRef!.current]);
 
-
   return (
     <>
       <SetTime 
