@@ -18,13 +18,13 @@ export const SwitchBlockStyles = styled.section<ISwitchComponentProps>`
 `
 
 export const SwitchTimerStyles = styled.span<ISwitchComponentProps>`
-  color: ${props => props.mode === 'timer' ? '#fff' : '#737373'};
+  color: ${({mode}) => mode === 'timer' ? '#fff' : '#737373'};
   cursor: pointer;
   z-index: 3;
 `
 
 export const SwitchCountdownStyles = styled.span<ISwitchComponentProps>`
-color: ${props => props.mode === 'countdown' ? '#fff' : '#737373'};
+color: ${({mode}) => mode === 'countdown' ? '#fff' : '#737373'};
 cursor: pointer;
   z-index: 3;
 `
@@ -32,7 +32,7 @@ cursor: pointer;
 export const SwitchedModeStyles = styled.div<ISwitchComponentProps>`
   position: absolute;
   top: 0;
-  left: ${props => props.mode === 'timer' ? '0' : '50%'};
+  left: ${({mode}) => mode === 'timer' ? '0' : '50%'};
   width: 265px;
   height: 50px;
   background: #FE9F06;

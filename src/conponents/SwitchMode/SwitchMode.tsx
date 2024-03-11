@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
-import { ISwitchComponentProps } from "../../types/interfaces";
+
 import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
+import { ISwitchComponentProps } from "../../types/interfaces";
 
 function SwitchMode({...props}: ISwitchComponentProps) {
   const {

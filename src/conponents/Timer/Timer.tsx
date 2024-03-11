@@ -1,5 +1,7 @@
 import { useCallback, memo } from "react";
+
 import CircularProgress from "../CircularProgress/CircularProgress";
+
 import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, StartControlButtonStyles, StopControlButtonStyles } from "../ControlButton/ControlButton.styles";
 import { ITimerComponentProps } from "../../types/interfaces";
