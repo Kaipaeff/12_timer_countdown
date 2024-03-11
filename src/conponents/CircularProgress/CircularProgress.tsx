@@ -23,7 +23,7 @@ function CircularProgress({...props}: ICircularProgressProps) {
   const progressMaxValue = timerIntervalIdRef ? 3600 : barMaxValue;
   const progressDirection = countIntervalIdRef ? true : false;
   const progressText = formattedTime || (timerIntervalIdRef ? `00:00:00` : `00:00`);
-  const progressStrokeColor = isStarted ? '#DEFFE6' : (timerSeconds || countIntervalIdRef) ? '#FFF0D7' : '#D6D6D6';
+  const progressStrokeColor = isStarted ? '#DEFFE6' : (timerSeconds || countIntervalIdRef?.current) ? '#FFF0D7' : '#D6D6D6';
   const progressMainValue = barMaxValue ? formatCountDownTime(barMaxValue) : `00:00`;
 
   return (
