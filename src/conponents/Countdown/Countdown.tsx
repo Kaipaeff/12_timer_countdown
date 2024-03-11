@@ -1,8 +1,10 @@
 import { useCallback, useEffect, memo } from "react";
+
 import CircularProgress from "../CircularProgress/CircularProgress";
+import SetTime from "../SetTime/SetTime";
+
 import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, PauseControlButtonStyles, StartControlButtonStyles } from "../ControlButton/ControlButton.styles";
-import SetTime from "../SetTime/SetTime";
 import { ICountdownComponentProps } from "../../types/interfaces";
 
 function Countdown({...props}: ICountdownComponentProps) {

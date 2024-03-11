@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
+
 import { IButtonProps } from "../../types/interfaces";
 import ControlButton from "./ControlButton";
+import {white, black, grey, mediumGrey, deepGrey, green, neonGreen, deepGreen, brown, lightBrown, deepBrown, darkBrown, orange, neonRed} from "../../styles/Colors";
 
 export const ControlButtonStyles = styled.button<IButtonProps>`
   display: flex;
@@ -10,13 +12,13 @@ export const ControlButtonStyles = styled.button<IButtonProps>`
   height: 100px;
   border-radius: 50px;
   border: none;
-  background-color: ${({backgroundColor}) => backgroundColor || "#fff"};
-  color: ${props => props.color || "#000"};
+  background-color: ${({backgroundColor}) => backgroundColor || white};
+  color: ${({color}) => color || black};
   font-size: 18px;
 
   &:disabled {
     opacity: 0.8;
-    color: #626262;
+    color: ${grey};
     pointer-events: none;
   }
 
@@ -26,7 +28,7 @@ export const ControlButtonStyles = styled.button<IButtonProps>`
     justify-content: center;
     width: 90px;
     height: 90px;
-    background-color: ${({backgroundColor1}) => backgroundColor1 || "#000000"};
+    background-color: ${({backgroundColor1}) => backgroundColor1 || black};
 
     border-radius: 50px;
     border: none;
@@ -37,88 +39,82 @@ export const ControlButtonStyles = styled.button<IButtonProps>`
       justify-content: center;
       width: 84px;
       height: 84px;
-      background-color: ${({backgroundColor2}) => backgroundColor2 || "#fff"};
+      background-color: ${({backgroundColor2}) => backgroundColor2 || white};
       border-radius: 50px;
       border: none;
-      cursor: pointer;
-      box-shadow: 0px 0px 8px 2px rgba(0,62,0,0.3);        
+      cursor: pointer;       
 
       &:active {
-        background-color: #0A4A1B;
-        box-shadow: none;
+        background-color: ${green};
       }
     }
   }
 `
 
 export const StartControlButtonStyles = styled(ControlButton)<IButtonProps>`
-  background-color: ${({backgroundColor}) => backgroundColor || "#082A11"};
-  color: ${props => props.color || "#2ED158"};
+  background-color: ${({backgroundColor}) => backgroundColor || deepGreen};
+  color: ${({color}) => color || neonGreen};
 
   & div {
-    background-color: ${({backgroundColor1}) => backgroundColor1 || "#000000"};
+    background-color: ${({backgroundColor1}) => backgroundColor1 || black};
 
     & div {
-      background-color: ${({backgroundColor2}) => backgroundColor2 || "#082A11"};
+      background-color: ${({backgroundColor2}) => backgroundColor2 || deepGreen};
 
       &:active {
-        background-color: #0A4A1B;
-        box-shadow: none;
-        }
+        background-color: ${green};
+      }
     }
   }
 `
 
 export const StopControlButtonStyles = styled(ControlButton)<IButtonProps>`
-  background-color: ${({backgroundColor}) => backgroundColor || "#320E0B"};
-  color: ${props => props.color || "#FF453A"};
+  background-color: ${({backgroundColor}) => backgroundColor || deepBrown};
+  color: ${({color}) => color || neonRed};
 
   & div {
-    background-color: ${({backgroundColor1}) => backgroundColor1 || "#000000"};
+    background-color: ${({backgroundColor1}) => backgroundColor1 || black};
 
     & div {
-      background-color: ${({backgroundColor2}) => backgroundColor2 || "#320E0B"};
+      background-color: ${({backgroundColor2}) => backgroundColor2 || deepBrown};
 
       &:active {
-        background-color: #5B1812;
-        box-shadow: none;
-        }
+        background-color: ${brown};
+      }
     }
   }
 `
 
 export const CancelControlButtonStyles = styled(ControlButton)<IButtonProps>`
-  color: ${props => props.color || "#fff"};
-  background-color: ${({backgroundColor}) => backgroundColor || "#303030"};
+  color: ${({color}) => color || white};
+  background-color: ${({backgroundColor}) => backgroundColor || deepGrey};
 
   & div {
-    background-color: ${({backgroundColor1}) => backgroundColor1 || "#000000"};
+    background-color: ${({backgroundColor1}) => backgroundColor1 || black};
 
     & div {
-      background-color: ${({backgroundColor2}) => backgroundColor2 || "#303030"};
+      background-color: ${({backgroundColor2}) => backgroundColor2 || deepGrey};
 
       &:active {
-        background-color: #454546;
-        box-shadow: none;
-        }
+        background-color: ${mediumGrey};
+      }
     }
   }
 `
 
 export const PauseControlButtonStyles = styled(ControlButton)<IButtonProps>`
-  color: ${props => props.color || "#FE9F06"};
-  background-color: ${({backgroundColor}) => backgroundColor || "#331F02"};
+  color: ${({color}) => color || orange};
+  background-color: ${({backgroundColor}) => backgroundColor || darkBrown};
 
   & div {
-    background-color: ${({backgroundColor1}) => backgroundColor1 || "#000000"};
+    background-color: ${({backgroundColor1}) => backgroundColor1 || black};
 
     & div {
-      background-color: ${({backgroundColor2}) => backgroundColor2 || "#331F02"};
+      background-color: ${({backgroundColor2}) => backgroundColor2 || darkBrown};
 
       &:active {
-        background-color: #633C04;
-        box-shadow: none;
-        }
+        background-color: ${lightBrown};
+      }
     }
   }
 `
