@@ -32,9 +32,9 @@ export interface ICircularProgressProps extends Partial<ITimerComponentProps>, P
 export interface IButtonProps {
   title?: string;
   color?: string;
-  bcg?: string;
-  bcg1?: string;
-  bcg2?: string;
+  backgroundColor?: string;
+  backgroundColor1?: string;
+  backgroundColor2?: string;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;

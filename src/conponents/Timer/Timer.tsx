@@ -39,9 +39,9 @@ function Timer({...props}: ITimerComponentProps) {
         isStarted={isStarted}
       />
       <InnerWrapperBlockStyles>
-        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!timerSeconds || isStarted} bcg1="white"/>
-        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!timerSeconds ? 'Старт' : 'Дальше'} bcg1="white"/>}
-        {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'} bcg1="white"/>}
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={!timerSeconds || isStarted} backgroundColor1="white"/>
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!timerSeconds ? 'Старт' : 'Дальше'} backgroundColor1="white"/>}
+        {isStarted && <StopControlButtonStyles onClick={handleStart} title={'Стоп'} backgroundColor1="white"/>}
       </InnerWrapperBlockStyles>
     </>
   )

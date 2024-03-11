@@ -62,9 +62,9 @@ function Countdown({...props}: ICountdownComponentProps) {
       />
       
       <InnerWrapperBlockStyles>
-        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} bcg1="white"/>
-        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef!.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>}
-        {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} bcg1="white"/> }
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} backgroundColor1="white"/>
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef!.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} backgroundColor1="white"/>}
+        {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} backgroundColor1="white"/> }
       </InnerWrapperBlockStyles>
     </>
   )
