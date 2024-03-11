@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+
 import { CircularProgressbarStyles, ProgressbarMainValueStyles } from './CircularProgress.styles';
 import { ICircularProgressProps } from '../../types/interfaces';
 import { formatTimerTime, formatCountDownTime } from '../../utilities/formatTime';
