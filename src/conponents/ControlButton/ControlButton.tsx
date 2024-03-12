@@ -1,7 +1,6 @@
 import { IButtonProps } from "../../types/interfaces";
 import { ControlButtonStyles } from "./ControlButton.styles";
 
-
 export default function ControlButton({...props}: IButtonProps) {
   const {
     className, 
@@ -10,7 +9,6 @@ export default function ControlButton({...props}: IButtonProps) {
     title
   } = props;
 
-  
   return (
     <ControlButtonStyles 
       className={className} 

@@ -1,8 +1,8 @@
 import { ChangeEvent, memo, useCallback } from "react";
 import { Slider, TextField } from "@mui/material";
+
 import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { ISetTimeComponentProps } from "../../types/interfaces";
-
 
 function SetTime({...props}: ISetTimeComponentProps) {  
   const {
@@ -13,8 +13,14 @@ function SetTime({...props}: ISetTimeComponentProps) {
     setBarMaxValue,
   } = props;
 
+  const hour = 3600;
+  const stepValue = 15;
+  const maxMinutesValue = 720;
+  const maxSecondsValue = 59;
+  const valueLabelFormat = (value: number): string => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`;
+  const isDisabled = isStarted || (countIntervalIdRef?.current && !isStarted);
+
   const handleInputChange = useCallback(({target: {id, value}}: ChangeEvent<HTMLInputElement>) => {  
-    // const {id, value} = event.target;    //!!!!!!!!!!!!!!!!!!!
     if(!isStarted) {
       const updatedMinutes = Number(value) * 60;
       const updatedSeconds = Number(value) % 1000
@@ -35,21 +41,20 @@ function SetTime({...props}: ISetTimeComponentProps) {
     }
   }, [isStarted]);
 
-
   return (
     <>
       <Slider
         id="slider"
         aria-label="Seconds"
         valueLabelDisplay="auto"
-        valueLabelFormat={(value) => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`}
+        valueLabelFormat={valueLabelFormat}
         defaultValue={0}
-        step={15}
+        step={stepValue}
         min={0}
-        max={3600}
+        max={hour}
         value={countSeconds}
         color={'warning'}
-        disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
+        disabled={isDisabled}
         onChange={handleSliderChange}
       />
       <SetTimeInnerWrapperBlockStyles>
@@ -62,8 +67,8 @@ function SetTime({...props}: ISetTimeComponentProps) {
             width: 120,
           }}
           size="small"
-          disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
-          inputProps={{ min: 0, max: 720 }}
+          disabled={isDisabled}
+          inputProps={{ min: 0, max: maxMinutesValue }}
           value={Math.floor(countSeconds / 60)}
           onChange={handleInputChange}
         />
@@ -77,8 +82,8 @@ function SetTime({...props}: ISetTimeComponentProps) {
             width: 120,
           }}
           size="small"
-          disabled={isStarted || (countIntervalIdRef?.current && !isStarted )}
-          inputProps={{ min: 0, max: 59 }}
+          disabled={isDisabled}
+          inputProps={{ min: 0, max: maxSecondsValue }}
           value={countSeconds % 60}
           onChange={handleInputChange}
         />

@@ -1,9 +1,10 @@
 import { memo, useMemo } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
 import { CircularProgressbarStyles, ProgressbarMainValueStyles } from './CircularProgress.styles';
 import { ICircularProgressProps } from '../../types/interfaces';
-import { formatTimerTime, formatCountDownTime } from '../../services/formatTime';
+import { formatTimerTime, formatCountDownTime } from '../../utilities/formatTime';
 
 function CircularProgress({...props}: ICircularProgressProps) {
   const {
@@ -16,27 +17,28 @@ function CircularProgress({...props}: ICircularProgressProps) {
   } = props;
 
   const formattedTime = useMemo(() => {
-    return timerIntervalIdRef ? formatTimerTime(timerSeconds!) : formatCountDownTime(countSeconds!)
-  }, [timerIntervalIdRef, timerSeconds, countSeconds])
+    return timerSeconds ? formatTimerTime(timerSeconds) : countSeconds ? formatCountDownTime(countSeconds) : undefined;
+  }, [timerSeconds, countSeconds]);
 
+  const progressValue = countSeconds ? countSeconds : timerSeconds ? Math.floor(timerSeconds / 1000) : 0;
+  const progressMaxValue = timerIntervalIdRef ? 3600 : barMaxValue;
+  const progressDirection = countIntervalIdRef ? true : false;
+  const progressText = formattedTime || (timerIntervalIdRef ? `00:00:00` : `00:00`);
+  const progressStrokeColor = isStarted ? '#DEFFE6' : (timerIntervalIdRef?.current || countIntervalIdRef?.current) ? '#FFF0D7' : '#D6D6D6';
+  const progressMainValue = barMaxValue ? formatCountDownTime(barMaxValue) : `00:00`;
 
   return (
     <CircularProgressbarStyles>
-      {countSeconds! > 0 && <ProgressbarMainValueStyles>{formatCountDownTime(barMaxValue!)}</ProgressbarMainValueStyles>}
+      {countIntervalIdRef && <ProgressbarMainValueStyles>{progressMainValue}</ProgressbarMainValueStyles>}
       <CircularProgressbar 
-        value={countSeconds! || (Math.floor(timerSeconds! / 1000))} 
-        maxValue={timerSeconds! > 0 ? 3600 : barMaxValue!}
-        counterClockwise={countSeconds! > 0 ? true : false}
-        text={formattedTime}
+        value={progressValue}
+        maxValue={progressMaxValue}
+        counterClockwise={progressDirection}
+        text={progressText}
         strokeWidth={4}
         styles={{
           path: 
-          {stroke:
-            isStarted 
-              ? '#DEFFE6' // Светло-зеленый
-              : (timerIntervalIdRef?.current || countIntervalIdRef?.current) ? '#FFF0D7' // Светло-оранжевый
-              : '#D6D6D6' // Серый
-          },  
+          {stroke: progressStrokeColor},  
           text: {
             fill: '#737373',
             fontSize: '20px',

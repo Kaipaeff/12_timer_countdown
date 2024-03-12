@@ -1,7 +1,7 @@
 import { memo, useCallback } from "react";
-import { ISwitchComponentProps } from "../../types/interfaces";
-import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
 
+import { SwitchBlockStyles, SwitchTimerStyles, SwitchCountdownStyles, SwitchedModeStyles } from "./SwitchMode.styles";
+import { ISwitchComponentProps } from "../../types/interfaces";
 
 function SwitchMode({...props}: ISwitchComponentProps) {
   const {
@@ -25,7 +25,6 @@ function SwitchMode({...props}: ISwitchComponentProps) {
     clearInterval(countIntervalIdRef!.current);
     countIntervalIdRef!.current = undefined;
   }, [countSeconds]);
-
 
   return (
     <SwitchBlockStyles>

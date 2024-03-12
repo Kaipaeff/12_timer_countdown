@@ -1,8 +1,10 @@
 import { useCallback, useEffect, memo } from "react";
+
 import CircularProgress from "../CircularProgress/CircularProgress";
+import SetTime from "../SetTime/SetTime";
+
 import { InnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
 import { CancelControlButtonStyles, PauseControlButtonStyles, StartControlButtonStyles } from "../ControlButton/ControlButton.styles";
-import SetTime from "../SetTime/SetTime";
 import { ICountdownComponentProps } from "../../types/interfaces";
 
 function Countdown({...props}: ICountdownComponentProps) {
@@ -43,7 +45,6 @@ function Countdown({...props}: ICountdownComponentProps) {
     countIntervalIdRef!.current = undefined;
   }, [countIntervalIdRef!.current]);
 
-
   return (
     <>
       <SetTime 
@@ -63,9 +64,9 @@ function Countdown({...props}: ICountdownComponentProps) {
       />
       
       <InnerWrapperBlockStyles>
-        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} bcg1="white"/>
-        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef!.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} bcg1="white"/>}
-        {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} bcg1="white"/> }
+        <CancelControlButtonStyles onClick={handleReset} title={'Сброс'} disabled={countSeconds === 0 || isStarted} backgroundColor1="white"/>
+        {!isStarted && <StartControlButtonStyles onClick={handleStart} title={!countIntervalIdRef!.current && !isStarted ? 'Старт' : 'Дальше'} disabled={countSeconds === 0} backgroundColor1="white"/>}
+        {isStarted && <PauseControlButtonStyles onClick={handleStart} title={'Пауза'} backgroundColor1="white"/> }
       </InnerWrapperBlockStyles>
     </>
   )
