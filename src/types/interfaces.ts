@@ -25,7 +25,11 @@ export interface ICountdownComponentProps extends Pick<ITimerComponentProps, 'is
   setBarMaxValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface ISetTimeComponentProps extends Pick<ICountdownComponentProps, 'countSeconds' | 'setCountSeconds' | 'isStarted' | 'countIntervalIdRef' | 'setBarMaxValue'> {}
+export interface ISetTimeComponentProps
+  extends Pick<
+    ICountdownComponentProps,
+    'countSeconds' | 'setCountSeconds' | 'isStarted' | 'countIntervalIdRef' | 'setBarMaxValue'
+  > {}
 
 export interface ICircularProgressProps extends Partial<ITimerComponentProps>, Partial<ICountdownComponentProps> {}
 

@@ -8,7 +8,7 @@ export const formatTimerTime = (totalSeconds: number): string => {
   const formattedMilliseconds = milliseconds < 10 ? `0${milliseconds}` : milliseconds;
 
   return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
-}
+};
 
 export const formatCountDownTime = (totalSeconds: number): string => {
   const minutes = Math.floor(totalSeconds / 60);
@@ -18,4 +18,4 @@ export const formatCountDownTime = (totalSeconds: number): string => {
   const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
   return `${formattedMinutes}:${formattedSeconds}`;
-}
+};

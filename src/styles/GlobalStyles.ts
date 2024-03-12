@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -242,4 +242,4 @@ textarea:focus {
 *:focus {
   outline: 2px solid transparent;
 }
-` 
+`;

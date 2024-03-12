@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const CircularProgressbarStyles = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const CircularProgressbarStyles = styled.div`
   align-items: center;
   margin-top: auto;
   margin-bottom: 20px;
-`
+`;
 
 export const ProgressbarMainValueStyles = styled(CircularProgressbarStyles)`
   position: absolute;
@@ -20,7 +20,7 @@ export const ProgressbarMainValueStyles = styled(CircularProgressbarStyles)`
   width: 100px;
   height: 26px;
   font-size: 20px;
-  color: #7B7B7B;
-  background-color: #E3E3E3;
+  color: #7b7b7b;
+  background-color: #e3e3e3;
   border-radius: 8px;
-`
+`;
