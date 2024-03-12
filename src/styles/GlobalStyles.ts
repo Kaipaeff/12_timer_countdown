@@ -1,37 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-@font-face {
-  font-family: "TTLakes";
-  src: local("TTLakes-Light"), url("../assets/fonts/TTLakes-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TTLakes";
-  src: local("TTLakes-Regular"), url("../assets/fonts/TTLakes-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TTLakes";
-  src: local("TTLakes-Medium"), url("../assets/fonts/TTLakes-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TTLakes";
-  src: local("TTLakes-Bold"), url("../assets/fonts/TTLakes-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 body {
   display: flex;
@@ -39,7 +8,7 @@ body {
   align-items: center;
   width: 100%;
   padding-top: 80px;
-  font-family: "TTLakes", "Nunito", "Roboto", sans-serif;
+  font-family: "Nunito", "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   color: rgb(123, 148, 169);
