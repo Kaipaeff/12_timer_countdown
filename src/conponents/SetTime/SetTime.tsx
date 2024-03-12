@@ -1,45 +1,46 @@
-import { ChangeEvent, memo, useCallback } from "react";
-import { Slider, TextField } from "@mui/material";
+import { ChangeEvent, memo, useCallback } from 'react';
+import { Slider, TextField } from '@mui/material';
 
-import { SetTimeInnerWrapperBlockStyles } from "../../styles/InnerWrapperBlockStyles";
-import { ISetTimeComponentProps } from "../../types/interfaces";
+import { SetTimeInnerWrapperBlockStyles } from '../../styles/InnerWrapperBlockStyles';
+import { ISetTimeComponentProps } from '../../types/interfaces';
 
-function SetTime({...props}: ISetTimeComponentProps) {  
-  const {
-    isStarted, 
-    countSeconds, 
-    setCountSeconds, 
-    countIntervalIdRef, 
-    setBarMaxValue,
-  } = props;
+function SetTime({ ...props }: ISetTimeComponentProps) {
+  const { isStarted, countSeconds, setCountSeconds, countIntervalIdRef, setBarMaxValue } = props;
 
   const hour = 3600;
   const stepValue = 15;
   const maxMinutesValue = 720;
   const maxSecondsValue = 59;
-  const valueLabelFormat = (value: number): string => `${Math.floor(value / 60)}:${(value % 60 < 10 ? '0' : '')}${value % 60}`;
+  const valueLabelFormat = (value: number): string =>
+    `${Math.floor(value / 60)}:${value % 60 < 10 ? '0' : ''}${value % 60}`;
   const isDisabled = isStarted || (countIntervalIdRef?.current && !isStarted);
 
-  const handleInputChange = useCallback(({target: {id, value}}: ChangeEvent<HTMLInputElement>) => {  
-    if(!isStarted) {
-      const updatedMinutes = Number(value) * 60;
-      const updatedSeconds = Number(value) % 1000
-      if (id === "minutes" && Number(value) > 0 && Number(value) <= 720) {
-        setCountSeconds(prev => updatedMinutes + prev % 60);
-        setBarMaxValue(prev => updatedMinutes + prev % 60);
-      } else if (id === "seconds" && Number(value) > 0 && Number(value) <= 59) {
-        setCountSeconds(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
-        setBarMaxValue(prev => (Math.floor(prev / 60) * 60) + updatedSeconds);
+  const handleInputChange = useCallback(
+    ({ target: { id, value } }: ChangeEvent<HTMLInputElement>) => {
+      if (!isStarted) {
+        const updatedMinutes = Number(value) * 60;
+        const updatedSeconds = Number(value) % 1000;
+        if (id === 'minutes' && Number(value) > 0 && Number(value) <= 720) {
+          setCountSeconds(prev => updatedMinutes + (prev % 60));
+          setBarMaxValue(prev => updatedMinutes + (prev % 60));
+        } else if (id === 'seconds' && Number(value) > 0 && Number(value) <= 59) {
+          setCountSeconds(prev => Math.floor(prev / 60) * 60 + updatedSeconds);
+          setBarMaxValue(prev => Math.floor(prev / 60) * 60 + updatedSeconds);
+        }
       }
-    }
-  }, [isStarted]);
+    },
+    [isStarted],
+  );
 
-  const handleSliderChange = useCallback((_event: Event, value: number | number[]) => {
-    if(!isStarted && typeof value === "number") {
-      setCountSeconds(value);
-      setBarMaxValue(value);
-    }
-  }, [isStarted]);
+  const handleSliderChange = useCallback(
+    (_event: Event, value: number | number[]) => {
+      if (!isStarted && typeof value === 'number') {
+        setCountSeconds(value);
+        setBarMaxValue(value);
+      }
+    },
+    [isStarted],
+  );
 
   return (
     <>
@@ -89,7 +90,7 @@ function SetTime({...props}: ISetTimeComponentProps) {
         />
       </SetTimeInnerWrapperBlockStyles>
     </>
-  )
+  );
 }
 
 export default memo(SetTime);

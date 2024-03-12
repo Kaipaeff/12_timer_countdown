@@ -6,15 +6,8 @@ import { CircularProgressbarStyles, ProgressbarMainValueStyles } from './Circula
 import { ICircularProgressProps } from '../../types/interfaces';
 import { formatTimerTime, formatCountDownTime } from '../../utilities/formatTime';
 
-function CircularProgress({...props}: ICircularProgressProps) {
-  const {
-    timerIntervalIdRef, 
-    countIntervalIdRef, 
-    timerSeconds, 
-    countSeconds, 
-    isStarted, 
-    barMaxValue,  
-  } = props;
+function CircularProgress({ ...props }: ICircularProgressProps) {
+  const { timerIntervalIdRef, countIntervalIdRef, timerSeconds, countSeconds, isStarted, barMaxValue } = props;
 
   const formattedTime = useMemo(() => {
     return timerSeconds ? formatTimerTime(timerSeconds) : countSeconds ? formatCountDownTime(countSeconds) : undefined;
@@ -24,30 +17,33 @@ function CircularProgress({...props}: ICircularProgressProps) {
   const progressMaxValue = timerIntervalIdRef ? 3600 : barMaxValue;
   const progressDirection = countIntervalIdRef ? true : false;
   const progressText = formattedTime || (timerIntervalIdRef ? `00:00:00` : `00:00`);
-  const progressStrokeColor = isStarted ? '#DEFFE6' : (timerIntervalIdRef?.current || countIntervalIdRef?.current) ? '#FFF0D7' : '#D6D6D6';
+  const progressStrokeColor = isStarted
+    ? '#DEFFE6'
+    : timerIntervalIdRef?.current || countIntervalIdRef?.current
+      ? '#FFF0D7'
+      : '#D6D6D6';
   const progressMainValue = barMaxValue ? formatCountDownTime(barMaxValue) : `00:00`;
 
   return (
     <CircularProgressbarStyles>
       {countIntervalIdRef && <ProgressbarMainValueStyles>{progressMainValue}</ProgressbarMainValueStyles>}
-      <CircularProgressbar 
+      <CircularProgressbar
         value={progressValue}
         maxValue={progressMaxValue}
         counterClockwise={progressDirection}
         text={progressText}
         strokeWidth={4}
         styles={{
-          path: 
-          {stroke: progressStrokeColor},  
+          path: { stroke: progressStrokeColor },
           text: {
             fill: '#737373',
             fontSize: '20px',
             fontWeight: '100',
           },
         }}
-        />
-    </CircularProgressbarStyles>        
-  )
+      />
+    </CircularProgressbarStyles>
+  );
 }
 
 export default memo(CircularProgress);
